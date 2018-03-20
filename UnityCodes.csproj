@@ -229,6 +229,7 @@
     <Compile Include="Assets\SpringGUI\Demo\08_LineChartGraph\LineChartGraphExample.cs" />
     <Compile Include="Assets\SpringGUI\Demo\09_RadarMap\RadarMapExample.cs" />
     <Compile Include="Assets\SpringGUI\Demo\10_BarChartGraph\BarChartExample.cs" />
+    <Compile Include="Assets\SpringGUI\Demo\11_Ruler\RulerExmaple.cs" />
     <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Buttons\DoubleClickButton.cs" />
     <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Buttons\LongClickButton.cs" />
     <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Calendar\Calendar.cs" />
