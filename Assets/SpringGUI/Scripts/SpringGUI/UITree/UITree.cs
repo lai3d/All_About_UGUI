@@ -67,7 +67,7 @@ namespace SpringGUI
 
         private void getComponent( )
         {
-            m_container = transform.FindChild("Viewport/Content");
+            m_container = transform.Find("Viewport/Content");
             if(m_container.childCount.Equals(0))
                 throw new Exception("UITreeNode Template can not be null! Create a Template!");
             TreeRootNode = m_container.GetChild(0).GetComponent<UITreeNode>();

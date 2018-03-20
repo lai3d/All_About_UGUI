@@ -27,7 +27,7 @@ namespace SpringGUI
             m_size = m_transform.GetComponent<RectTransform>().sizeDelta;
             m_halfX = m_size.x / 2.0f;
             m_halfY = m_size.y / 2.0f;
-            m_nonius = transform.FindChild("ColorNonius");
+            m_nonius = transform.Find("ColorNonius");
             m_colorPicker = m_transform.parent.GetComponent<ColorPicker>();    
         }
         private void Update()
@@ -42,7 +42,7 @@ namespace SpringGUI
         public void ResetNoniusPosition( Vector3 position )
         {
             if ( null == m_nonius )
-                m_nonius = transform.FindChild("ColorNonius");
+                m_nonius = transform.Find("ColorNonius");
             m_nonius.localPosition = position;
         }
 

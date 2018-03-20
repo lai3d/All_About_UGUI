@@ -35,11 +35,11 @@ namespace SpringGUI
         private void getComponent( )
         {
             _myTransform = this.transform;
-            _container = _myTransform.FindChild("Container");
-            toggle = _container.FindChild("Toggle").GetComponent<Toggle>();
-            icon = _container.FindChild("IconContainer/Icon").GetComponent<Image>();
-            text = _container.FindChild("Text").GetComponent<Text>();
-            _toggleTransform = toggle.transform.FindChild("Image");
+            _container = _myTransform.Find("Container");
+            toggle = _container.Find("Toggle").GetComponent<Toggle>();
+            icon = _container.Find("IconContainer/Icon").GetComponent<Image>();
+            text = _container.Find("Text").GetComponent<Text>();
+            _toggleTransform = toggle.transform.Find("Image");
             UITree = _myTransform.parent.parent.parent.GetComponent<UITree>();
         }
         private void resetComponent( )

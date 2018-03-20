@@ -110,7 +110,7 @@ namespace SpringGUI
             uiTree.GetComponent<RectTransform>().sizeDelta = _defaultUITreeSize;
             uiTreeScrollRect.horizontal = false;
             uiTree.name = "UITree";
-            Transform content = uiTree.transform.FindChild("Viewport/Content");
+            Transform content = uiTree.transform.Find("Viewport/Content");
             GridLayoutGroup glg = content.gameObject.AddComponent<GridLayoutGroup>();
             glg.cellSize = _defaultUITreeNodeSize;
             glg.spacing = new Vector2(0 , 2);
@@ -205,7 +205,7 @@ namespace SpringGUI
         {
             GameObject dcButton = DefaultControls.CreateButton(convertToDefaultResources(resources));
             dcButton.name = "DoubleClickButton";
-            dcButton.transform.FindChild("Text").GetComponent<Text>().text = "DoubleClickButton";
+            dcButton.transform.Find("Text").GetComponent<Text>().text = "DoubleClickButton";
             Object.DestroyImmediate(dcButton.GetComponent<Button>());
             dcButton.AddComponent<DoubleClickButton>();
             return dcButton;
@@ -218,7 +218,7 @@ namespace SpringGUI
         {
             GameObject lcButton = DefaultControls.CreateButton(convertToDefaultResources(resources));
             lcButton.name = "LongClickButton";
-            lcButton.transform.FindChild("Text").GetComponent<Text>().text = "LongClickButton";
+            lcButton.transform.Find("Text").GetComponent<Text>().text = "LongClickButton";
             Object.DestroyImmediate(lcButton.GetComponent<Button>());
             lcButton.AddComponent<LongClickButton>();
             return lcButton;
@@ -343,7 +343,7 @@ namespace SpringGUI
             //create day text
             GameObject dayText = DefaultControls.CreateButton(res);
             dayText.name = "DayTemplate";
-            dayText.transform.FindChild("Text").GetComponent<Text>().text = "31";
+            dayText.transform.Find("Text").GetComponent<Text>().text = "31";
             dayText.GetComponent<Image>().sprite = null;
             dayText.GetComponent<Image>().color = Color.cyan;
             SetParentAndAlign(dayText , days.transform);
@@ -362,7 +362,7 @@ namespace SpringGUI
             //create monthText
             GameObject monthText = DefaultControls.CreateButton(res);
             monthText.name = "MonthTemplate";
-            monthText.transform.FindChild("Text").GetComponent<Text>().text = "January";
+            monthText.transform.Find("Text").GetComponent<Text>().text = "January";
             monthText.GetComponent<Image>().sprite = null;
             monthText.GetComponent<Image>().color = Color.cyan;
             SetParentAndAlign(monthText , months.transform);
@@ -627,9 +627,9 @@ namespace SpringGUI
             rValue.transform.localPosition = new Vector3(94.3f,0);
             rValue.name = "Value";
             rValue.GetComponent<InputField>().text = "255";
-            rValue.transform.FindChild("Text").GetComponent<Text>().fontSize = 12;
-            rValue.transform.FindChild("Text").GetComponent<Text>().alignment = TextAnchor.MiddleCenter;
-            var rRect = rValue.transform.FindChild("Text").GetComponent<RectTransform>();
+            rValue.transform.Find("Text").GetComponent<Text>().fontSize = 12;
+            rValue.transform.Find("Text").GetComponent<Text>().alignment = TextAnchor.MiddleCenter;
+            var rRect = rValue.transform.Find("Text").GetComponent<RectTransform>();
             rRect.sizeDelta = new Vector2(27.4f , 20);
             rRect.anchorMin = Vector2.zero;
             rRect.anchorMax = Vector2.one;
@@ -649,9 +649,9 @@ namespace SpringGUI
             gValue.transform.localPosition = new Vector3(94.3f , 0);
             gValue.name = "Value";
             gValue.GetComponent<InputField>().text = "255";
-            gValue.transform.FindChild("Text").GetComponent<Text>().fontSize = 12;
-            gValue.transform.FindChild("Text").GetComponent<Text>().alignment = TextAnchor.MiddleCenter;
-            var gRect = gValue.transform.FindChild("Text").GetComponent<RectTransform>();
+            gValue.transform.Find("Text").GetComponent<Text>().fontSize = 12;
+            gValue.transform.Find("Text").GetComponent<Text>().alignment = TextAnchor.MiddleCenter;
+            var gRect = gValue.transform.Find("Text").GetComponent<RectTransform>();
             gRect.sizeDelta = new Vector2(27.4f , 20);
             gRect.anchorMin = Vector2.zero;
             gRect.anchorMax = Vector2.one;
@@ -672,9 +672,9 @@ namespace SpringGUI
             bValue.transform.localPosition = new Vector3(94.3f , 0);
             bValue.name = "Value";
             bValue.GetComponent<InputField>().text = "255";
-            bValue.transform.FindChild("Text").GetComponent<Text>().fontSize = 12;
-            bValue.transform.FindChild("Text").GetComponent<Text>().alignment = TextAnchor.MiddleCenter;
-            var bRect = bValue.transform.FindChild("Text").GetComponent<RectTransform>();
+            bValue.transform.Find("Text").GetComponent<Text>().fontSize = 12;
+            bValue.transform.Find("Text").GetComponent<Text>().alignment = TextAnchor.MiddleCenter;
+            var bRect = bValue.transform.Find("Text").GetComponent<RectTransform>();
             bRect.sizeDelta = new Vector2(27.4f , 20);
             bRect.anchorMin = Vector2.zero;
             bRect.anchorMax = Vector2.one;
@@ -695,9 +695,9 @@ namespace SpringGUI
             aValue.transform.localPosition = new Vector3(94.3f , 0);
             aValue.name = "Value";
             aValue.GetComponent<InputField>().text = "255";
-            aValue.transform.FindChild("Text").GetComponent<Text>().fontSize = 12;
-            aValue.transform.FindChild("Text").GetComponent<Text>().alignment = TextAnchor.MiddleCenter;
-            var aRect = aValue.transform.FindChild("Text").GetComponent<RectTransform>();
+            aValue.transform.Find("Text").GetComponent<Text>().fontSize = 12;
+            aValue.transform.Find("Text").GetComponent<Text>().alignment = TextAnchor.MiddleCenter;
+            var aRect = aValue.transform.Find("Text").GetComponent<RectTransform>();
             aRect.sizeDelta = new Vector2(27.4f , 20);
             aRect.anchorMin = Vector2.zero;
             aRect.anchorMax = Vector2.one;
@@ -725,7 +725,7 @@ namespace SpringGUI
             hexInput.GetComponent<RectTransform>().sizeDelta = new Vector2(76.9f , 25);
             hexInput.transform.localPosition = new Vector3(66.85f , 0);
             hexInput.GetComponent<InputField>().text = "FFFFFFFF";
-            var textRect = hexInput.transform.FindChild("Text").GetComponent<RectTransform>();
+            var textRect = hexInput.transform.Find("Text").GetComponent<RectTransform>();
             textRect.sizeDelta = new Vector2(76.9f , 25);
             textRect.anchorMin = Vector2.zero;
             textRect.anchorMax = Vector2.one;

@@ -203,71 +203,71 @@ namespace SpringGUI
         protected override void Start()
         {
             m_transform = this.transform;
-            m_mainColorTape = m_transform.FindChild("MainColor").GetComponent<MainColorTape>();
+            m_mainColorTape = m_transform.Find("MainColor").GetComponent<MainColorTape>();
 
             #region  RGBA ColoredTape RGBA组件获取与事件监听
-            var RGBA = m_transform.FindChild("RGBA");
+            var RGBA = m_transform.Find("RGBA");
 
-            m_rText = RGBA.transform.FindChild("R/Text").GetComponent<Text>();
-            m_rValue = RGBA.FindChild("R/Value").GetComponent<InputField>();
-            m_rSlider = RGBA.FindChild("R/Slider").GetComponent<Slider>();
+            m_rText = RGBA.transform.Find("R/Text").GetComponent<Text>();
+            m_rValue = RGBA.Find("R/Value").GetComponent<InputField>();
+            m_rSlider = RGBA.Find("R/Slider").GetComponent<Slider>();
             m_rSlider.onValueChanged.AddListener(OnRedSliderChanged);
-            m_rColoredTape = m_rSlider.transform.FindChild("ColoredTape").GetComponent<ColoredTape>();
+            m_rColoredTape = m_rSlider.transform.Find("ColoredTape").GetComponent<ColoredTape>();
             m_rValue.onValueChanged.AddListener(SetColorbyR);
 
-            m_gText = RGBA.transform.FindChild("G/Text").GetComponent<Text>();
-            m_gValue = RGBA.FindChild("G/Value").GetComponent<InputField>();
-            m_gSlider = RGBA.FindChild("G/Slider").GetComponent<Slider>();
+            m_gText = RGBA.transform.Find("G/Text").GetComponent<Text>();
+            m_gValue = RGBA.Find("G/Value").GetComponent<InputField>();
+            m_gSlider = RGBA.Find("G/Slider").GetComponent<Slider>();
             m_gSlider.onValueChanged.AddListener(OnGreenSliderChanged);
-            m_gColoredTape = m_gSlider.transform.FindChild("ColoredTape").GetComponent<ColoredTape>();
+            m_gColoredTape = m_gSlider.transform.Find("ColoredTape").GetComponent<ColoredTape>();
             m_gValue.onValueChanged.AddListener(SetColorbyG);
 
-            m_bText = RGBA.transform.FindChild("B/Text").GetComponent<Text>();
-            m_bValue = RGBA.FindChild("B/Value").GetComponent<InputField>();
-            m_bSlider = RGBA.FindChild("B/Slider").GetComponent<Slider>();
+            m_bText = RGBA.transform.Find("B/Text").GetComponent<Text>();
+            m_bValue = RGBA.Find("B/Value").GetComponent<InputField>();
+            m_bSlider = RGBA.Find("B/Slider").GetComponent<Slider>();
             m_bSlider.onValueChanged.AddListener(OnBlueSliderChanged);
-            m_bColoredTape = m_bSlider.transform.FindChild("ColoredTape").GetComponent<ColoredTape>();
+            m_bColoredTape = m_bSlider.transform.Find("ColoredTape").GetComponent<ColoredTape>();
             m_bValue.onValueChanged.AddListener(SetColorbyB);
 
-            m_aText = RGBA.transform.FindChild("A/Text").GetComponent<Text>();
-            m_aValue = RGBA.FindChild("A/Value").GetComponent<InputField>();
-            m_aSlider = RGBA.FindChild("A/Slider").GetComponent<Slider>();
+            m_aText = RGBA.transform.Find("A/Text").GetComponent<Text>();
+            m_aValue = RGBA.Find("A/Value").GetComponent<InputField>();
+            m_aSlider = RGBA.Find("A/Slider").GetComponent<Slider>();
             m_aSlider.onValueChanged.AddListener(OnAlphaSliderChanged);
-            m_aColoredTape = m_aSlider.transform.FindChild("ColoredTape").GetComponent<ColoredTape>();
+            m_aColoredTape = m_aSlider.transform.Find("ColoredTape").GetComponent<ColoredTape>();
             m_aValue.onValueChanged.AddListener(SetColorbyA);
             #endregion
 
-            m_transform.FindChild("ColorSucker").GetComponent<Button>().onClick.AddListener(( ) => { WorkState = E_WorkState.Sucker; });
-            m_transform.FindChild("PaletteModeButton").GetComponent<Button>().onClick.AddListener(ChangePaletteMode);
+            m_transform.Find("ColorSucker").GetComponent<Button>().onClick.AddListener(( ) => { WorkState = E_WorkState.Sucker; });
+            m_transform.Find("PaletteModeButton").GetComponent<Button>().onClick.AddListener(ChangePaletteMode);
             //m_transform.FindChild("ColorModeButton").GetComponent<Button>().onClick.AddListener(ChangeColorMode);
 
             // Suck Color
-            m_suckScreen = m_transform.FindChild("SuckScreen");
-            m_screenImage = m_suckScreen.FindChild("Texture").GetComponent<Image>();
-            m_imageMesh = m_suckScreen.FindChild("Mesh").GetComponent<ImageMesh>();
+            m_suckScreen = m_transform.Find("SuckScreen");
+            m_screenImage = m_suckScreen.Find("Texture").GetComponent<Image>();
+            m_imageMesh = m_suckScreen.Find("Mesh").GetComponent<ImageMesh>();
 
             // 调色板
-            m_colorPalette = m_transform.FindChild("ColorPalette");
+            m_colorPalette = m_transform.Find("ColorPalette");
             //m_colorPaletteScript = m_colorPalette.GetComponent<ColorPalette>();
-            m_nonius = m_colorPalette.FindChild("ColorNonius");
-            m_firstLayerCT = m_colorPalette.FindChild("FirstLayerColoredTape").GetComponent<ColoredTape>();
-            m_secondLayerCT = m_colorPalette.FindChild("SecondLayerColoredTape").GetComponent<ColoredTape>();
-            m_multiCT = m_colorPalette.FindChild("MultiColoredTape").GetComponent<MultiColoredTape>();
-            m_leftText = m_colorPalette.FindChild("LeftText").GetComponent<Text>();
-            m_bottomText = m_colorPalette.FindChild("BottomText").GetComponent<Text>();
-            m_rightText = m_colorPalette.FindChild("RightText").GetComponent<Text>();
+            m_nonius = m_colorPalette.Find("ColorNonius");
+            m_firstLayerCT = m_colorPalette.Find("FirstLayerColoredTape").GetComponent<ColoredTape>();
+            m_secondLayerCT = m_colorPalette.Find("SecondLayerColoredTape").GetComponent<ColoredTape>();
+            m_multiCT = m_colorPalette.Find("MultiColoredTape").GetComponent<MultiColoredTape>();
+            m_leftText = m_colorPalette.Find("LeftText").GetComponent<Text>();
+            m_bottomText = m_colorPalette.Find("BottomText").GetComponent<Text>();
+            m_rightText = m_colorPalette.Find("RightText").GetComponent<Text>();
 
             // 垂直滑动条
-            m_coloredPate = m_transform.FindChild("ColoredTapeSlider");
+            m_coloredPate = m_transform.Find("ColoredTapeSlider");
             m_verticalCTSlider = m_coloredPate.GetComponent<Slider>();
-            m_verticalFirstCT = m_coloredPate.FindChild("FirstLayerColoredTape").GetComponent<ColoredTape>();
+            m_verticalFirstCT = m_coloredPate.Find("FirstLayerColoredTape").GetComponent<ColoredTape>();
             m_verticalCTSlider.onValueChanged.AddListener(verticalSliderChanged);
 
             // 预制颜色
-            m_presetParent = m_transform.FindChild("Presets/Colors");
-            m_colorItemTamplate = m_presetParent.FindChild("ColorItemTamplate").gameObject;
-            m_presetAddButton = m_presetParent.FindChild("AddButton").GetComponent<Image>();
-            m_presetParent.FindChild("AddButton").GetComponent<Button>().onClick.AddListener(AddPresetColor);
+            m_presetParent = m_transform.Find("Presets/Colors");
+            m_colorItemTamplate = m_presetParent.Find("ColorItemTamplate").gameObject;
+            m_presetAddButton = m_presetParent.Find("AddButton").GetComponent<Image>();
+            m_presetParent.Find("AddButton").GetComponent<Button>().onClick.AddListener(AddPresetColor);
 
             // 初始化操作
             InitHexColor();
@@ -291,10 +291,10 @@ namespace SpringGUI
         protected override void OnDisable()
         {
             base.OnDisable();
-            m_transform.FindChild("ColorSucker").GetComponent<Button>().onClick.RemoveAllListeners();
-            m_transform.FindChild("PaletteModeButton").GetComponent<Button>().onClick.RemoveAllListeners();
-            m_transform.FindChild("ColorModeButton").GetComponent<Button>().onClick.RemoveAllListeners();
-            m_presetParent.FindChild("AddButton").GetComponent<Button>().onClick.RemoveAllListeners();
+            m_transform.Find("ColorSucker").GetComponent<Button>().onClick.RemoveAllListeners();
+            m_transform.Find("PaletteModeButton").GetComponent<Button>().onClick.RemoveAllListeners();
+            m_transform.Find("ColorModeButton").GetComponent<Button>().onClick.RemoveAllListeners();
+            m_presetParent.Find("AddButton").GetComponent<Button>().onClick.RemoveAllListeners();
             m_rValue.onValueChanged.RemoveAllListeners();
             m_gValue.onValueChanged.RemoveAllListeners();
             m_bValue.onValueChanged.RemoveAllListeners();
@@ -1000,7 +1000,7 @@ namespace SpringGUI
 
         private void InitHexColor( )
         {
-            m_hexColor = m_transform.FindChild("HexColor/Value").GetComponent<InputField>();
+            m_hexColor = m_transform.Find("HexColor/Value").GetComponent<InputField>();
             m_hexColor.onValueChanged.AddListener(SetColorByHex);
         }
 
