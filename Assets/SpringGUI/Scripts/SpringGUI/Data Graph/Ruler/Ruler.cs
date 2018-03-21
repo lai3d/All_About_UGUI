@@ -36,11 +36,30 @@ namespace SpringGUI {
 
     [Serializable]
     public class RulerData {
-        [Header ("LineChart Axis Setting")]
+        [Header ("Ruler Axis Setting")]
         public bool IsDrawAxis = true;
         public float AxisWidth = 2.0f;
         public Color AxisColor = Color.white;
         public bool ShowArrow = false;
+
+        [Header ("Ruler Axis Scale Setting")]
+        public float AxisScaleWidth = 2.0f;
+        public float AxisScaleHeight = 8.0f;
+        public Color AxisScaleColor = Color.white;
+
+        [Header ("Ruler Mesh Setting")]
+        public bool IsDrawMeshX = true;
+        public bool IsDrawMeshY = true;
+        public float MeshWidth = 2.0f;
+        public Color MeshColor = Color.gray;
+        [Range (5, 1000)]
+        public float MeshCellXSize = 25.0f;
+        [Range (5, 1000)]
+        public float MeshCellYSize = 25.0f;
+        public bool IsImaginaryLine = false;
+
+        [HideInInspector]
+        public Vector2 MeshCellSize { get { return new Vector2 (MeshCellXSize, MeshCellYSize); } }
     }
 
     public class BaseRuler : IRuler {
@@ -55,9 +74,9 @@ namespace SpringGUI {
             //lines = basis.Lines;
             this.rect = rect;
             size = rect.size;
-            //origin = new Vector2 (-size.x / 2.0f, -size.y / 2.0f);
-            origin = new Vector2 (-size.x / 2.0f, size.y / 2.0f);
-            //vh = DrawMesh (vh);
+            //origin = new Vector2 (-size.x / 2.0f, -size.y / 2.0f); // bottom left
+            origin = new Vector2 (-size.x / 2.0f, size.y / 2.0f); // top left
+            vh = DrawMesh (vh);
             vh = DrawAxis (vh);
             return vh;
         }
@@ -94,11 +113,69 @@ namespace SpringGUI {
                     GetUIVertex(endPosY,basis.AxisColor),
                 });
             }
+            // draw scale
+            for (float x = basis.MeshCellSize.x; x <= size.x; x += basis.MeshCellSize.x) {
+                Vector2 startPoint = origin + new Vector2 (x, 0);
+                Vector2 endPoint = startPoint + new Vector2 (0, basis.AxisScaleHeight);
+                vh.AddUIVertexQuad (GetQuad (startPoint, endPoint, basis.AxisScaleColor, basis.AxisScaleWidth));
+            }
+
+            for (float y = -basis.MeshCellSize.y; y >= -size.y; y -= basis.MeshCellSize.y) {
+                Vector2 startPoint = origin + new Vector2 (0, y);
+                Vector2 endPoint = startPoint - new Vector2 (basis.AxisScaleHeight, 0);
+                vh.AddUIVertexQuad (GetQuad (startPoint, endPoint, basis.AxisScaleColor, basis.AxisScaleWidth));
+            }
             return vh;
         }
 
         public VertexHelper DrawMesh (VertexHelper vh) {
-            throw new NotImplementedException ();
+            if (!basis.IsDrawMeshX && !basis.IsDrawMeshY)
+                return vh;
+            if (basis.IsDrawMeshX) {
+                if (!basis.IsImaginaryLine) {
+                    for (float y = 0; y >= -size.y; y -= basis.MeshCellSize.y) {
+                        Vector2 startPoint = origin + new Vector2 (0, y);
+                        Vector2 endPoint = startPoint + new Vector2 (size.x, 0);
+                        vh.AddUIVertexQuad (GetQuad (startPoint, endPoint, basis.MeshColor, basis.MeshWidth));
+                    }
+                }
+                else {
+                    for (float y = 0; y >= -size.y; y -= basis.MeshCellSize.y) {
+                        Vector2 startPoint = origin + new Vector2 (0, y);
+                        Vector2 endPoint = startPoint + new Vector2 (8, 0);
+                        for (float x = 0; x < size.x; x += (8 + 2)) {
+                            vh.AddUIVertexQuad (GetQuad (startPoint, endPoint, basis.MeshColor, basis.MeshWidth));
+                            startPoint = startPoint + new Vector2 (10, 0);
+                            endPoint = startPoint + new Vector2 (8, 0);
+                            if (endPoint.x > size.x / 2.0f)
+                                endPoint = new Vector2 (size.x / 2.0f, endPoint.y);
+                        }
+                    }
+                }
+            }
+            if (basis.IsDrawMeshY) {
+                if (!basis.IsImaginaryLine) {
+                    for (float x = 0; x <= size.x; x += basis.MeshCellSize.x) {
+                        Vector2 startPoint = origin + new Vector2 (x, 0);
+                        Vector2 endPoint = startPoint - new Vector2 (0, size.y);
+                        vh.AddUIVertexQuad (GetQuad (startPoint, endPoint, basis.MeshColor, basis.MeshWidth));
+                    }
+                }
+                else {
+                    for (float x = 0; x <= size.x; x += basis.MeshCellSize.x) {
+                        Vector2 startPoint = origin + new Vector2 (x, 0);
+                        Vector2 endPoint = startPoint - new Vector2 (0, 8);
+                        for (float y = 0; y > -size.y; y -= (8 + 2)) {
+                            vh.AddUIVertexQuad (GetQuad (startPoint, endPoint, basis.MeshColor, basis.MeshWidth));
+                            startPoint = startPoint - new Vector2 (0, 10);
+                            endPoint = startPoint - new Vector2 (0, 8);
+                            if (endPoint.y < -size.y / 2.0f)
+                                endPoint = new Vector2 (endPoint.x, -size.y / 2.0f);
+                        }
+                    }
+                }
+            }
+            return vh;
         }
 
         /// <summary>
