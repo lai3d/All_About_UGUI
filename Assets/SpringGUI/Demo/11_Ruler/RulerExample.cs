@@ -14,5 +14,6 @@ public class RulerExample : MonoBehaviour
 
     public void Awake()
     {
+        ruler.ShowUnit ();
     }
 }

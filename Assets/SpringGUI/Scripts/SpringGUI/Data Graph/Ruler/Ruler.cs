@@ -26,6 +26,45 @@ namespace SpringGUI {
         public void Refresh () {
             OnEnable ();
         }
+        
+        private List<GameObject> m_units = new List<GameObject> ();
+        private void ClearUnit () {
+            foreach (GameObject mUnit in m_units)
+                GameObject.Destroy (mUnit);
+        }
+
+        public void ShowUnit () {
+            rulerBasis.XUnitTemplate.gameObject.SetActive (false);
+            rulerBasis.YUnitTemplate.gameObject.SetActive (false);
+            if (!rulerBasis.IsShowUnit)
+                return;
+            ClearUnit ();
+            Vector2 size = GetPixelAdjustedRect ().size;
+            Vector2 origin = new Vector2 (-size.x / 2.0f, size.y / 2.0f);
+            if (null != rulerBasis.XUnitTemplate) {
+                for (float y = 0, count = 0; y < size.y; y += rulerBasis.MeshCellYSize, count++) {
+                    float value = count * rulerBasis.MeshCellYSize;
+                    GeneratorUnit (rulerBasis.XUnitTemplate,
+                        origin - new Vector2 (0, count * rulerBasis.MeshCellYSize) + new Vector2 (-5, 0)).text = value.ToString ("F0");
+                }
+            }
+            if (null != rulerBasis.YUnitTemplate) {
+                for (float x = 0, count = 0; x < size.x; x += rulerBasis.MeshCellXSize, count++) {
+                    float value = count * rulerBasis.MeshCellXSize;
+                    GeneratorUnit (rulerBasis.YUnitTemplate,
+                        origin + new Vector2 (count * rulerBasis.MeshCellXSize, 0) + new Vector2 (0, 5)).text = value.ToString ("F0");
+                }
+            }
+        }
+        private Text GeneratorUnit (Text prefab, Vector3 position) {
+            Text go = GameObject.Instantiate (prefab);
+            go.gameObject.SetActive (true);
+            go.transform.SetParent (transform);
+            go.transform.localPosition = position;
+            go.transform.localScale = Vector3.one;
+            m_units.Add (go.gameObject);
+            return go;
+        }
     }
 
     public interface IRuler {
@@ -60,6 +99,14 @@ namespace SpringGUI {
 
         [HideInInspector]
         public Vector2 MeshCellSize { get { return new Vector2 (MeshCellXSize, MeshCellYSize); } }
+
+        [Header ("Ruler Unit Setting")]
+        public Color[] LineColors = new Color[] { };
+        public bool IsShowUnit = false;
+        public float XUnit = 1;
+        public float YUnit = 10;
+        public Text XUnitTemplate = null;
+        public Text YUnitTemplate = null;
     }
 
     public class BaseRuler : IRuler {
