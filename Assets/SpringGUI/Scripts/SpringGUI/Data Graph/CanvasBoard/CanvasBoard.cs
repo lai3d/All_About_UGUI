@@ -9,9 +9,10 @@ namespace SpringGUI {
     public class CanvasBoard : MaskableGraphic, IPointerClickHandler {
         [SerializeField]
         public CanvasBoardData canvasBoardBasis = null;
+        public Camera eventCamera;
 
-        [SerializeField]
-        private List<Vector2> listPoints = new List<Vector2>();
+        //[SerializeField]
+        //private List<Vector2> listPoints = new List<Vector2>();
 
         private ICanvasBoard CanvasBoardCreator {
             get {
@@ -35,8 +36,27 @@ namespace SpringGUI {
             canvasBoardBasis.AddLine (vertexs);
         }
 
+        public void Inject (Vector2 point, bool bMousePosition = false) {
+            if (!bMousePosition) {
+                canvasBoardBasis.AddPoint (point, !canvasBoardBasis.isTracingMouse);
+            } else {
+                canvasBoardBasis.mouseLocalPoint = point;
+            }
+        }
+
+        public void ClearBoard() {
+            canvasBoardBasis.listPoint.Clear ();
+            canvasBoardBasis.isTracingMouse = false;
+            UpdateGeometry ();
+        }
+
         private void Update () {
-            
+            if (canvasBoardBasis.isTracingMouse) {
+                Vector2 localPoint;
+                RectTransformUtility.ScreenPointToLocalPointInRectangle (rectTransform, Input.mousePosition, eventCamera, out localPoint);
+                Inject (localPoint, true);
+                UpdateGeometry ();
+            }
         }
 
         public void OnPointerClick (PointerEventData eventData) {
@@ -47,16 +67,16 @@ namespace SpringGUI {
                     Vector2 localPoint;
                     RectTransformUtility.ScreenPointToLocalPointInRectangle (rectTransform, pos, eventData.pressEventCamera, out localPoint);
                     Debug.Log ("localPoint: " + localPoint.ToString ());
-                    listPoints.Add (localPoint);
-                    if(listPoints.Count > 0 && listPoints.Count % 2 == 0) {
-                        Inject (listPoints);
-                        UpdateGeometry ();
-                        listPoints = new List<Vector2> ();
-                    }
+
+                    Inject (localPoint, false);
+
+                    canvasBoardBasis.isTracingMouse = true;
+                    UpdateGeometry ();
                 }
                 break;
             case PointerEventData.InputButton.Right: {
-
+                    canvasBoardBasis.isTracingMouse = false;
+                    UpdateGeometry ();
                 }
                 break;
             }
@@ -67,6 +87,7 @@ namespace SpringGUI {
         VertexHelper DrawCanvasBoard (VertexHelper vh, Rect rect, CanvasBoardData basis);
         VertexHelper DrawMesh (VertexHelper vh);
         VertexHelper DrawAxis (VertexHelper vh);
+        VertexHelper DrawRectangle (VertexHelper vh);
     }
 
     [Serializable]
@@ -98,8 +119,22 @@ namespace SpringGUI {
 
         [Header ("Ruler Unit Setting")]
         public Color LineColor = Color.blue;
+        public float LineWidth = 5.0f;
         [HideInInspector]
         public Dictionary<int, VertexStream> Lines = new Dictionary<int, VertexStream> ();
+        [HideInInspector]
+        public List<List<Vector2>> listPoint = new List<List<Vector2>>();
+        public Vector2 mouseLocalPoint;
+        public bool isTracingMouse = false;
+
+        public void AddPoint (Vector2 point, bool bNewList) {
+            if (bNewList) {
+                listPoint.Add (new List<Vector2> () { point });
+            }
+            else {
+                listPoint[listPoint.Count - 1].Add (point);
+            }
+        }
 
         public void AddLine (IList<Vector2> vertexs) {
             Lines.Add (Lines.Count, new VertexStream (vertexs, LineColor));
@@ -138,8 +173,30 @@ namespace SpringGUI {
             size = rect.size;
             //origin = new Vector2 (-size.x / 2.0f, -size.y / 2.0f); // bottom left
             origin = new Vector2 (-size.x / 2.0f, size.y / 2.0f); // top left
-            vh = DrawMesh (vh);
-            vh = DrawAxis (vh);
+            //vh = DrawMesh (vh);
+            //vh = DrawAxis (vh);
+            vh = DrawRectangle (vh);
+            return vh;
+        }
+
+        public virtual VertexHelper DrawRectangle (VertexHelper vh) {
+            if (!basis.IsDrawAxis)
+                return vh;
+            Vector2 startPosX = origin + new Vector2 (-basis.AxisWidth / 2.0f, 0);
+            Vector2 endPosX = startPosX + new Vector2 (size.x + basis.AxisWidth / 2.0f, 0);
+            Vector2 startPosY = origin + new Vector2 (0, -basis.AxisWidth / 2.0f);
+            Vector2 endPosY = startPosY - new Vector2 (0, size.y + basis.AxisWidth / 2.0f);
+            
+            vh.AddUIVertexQuad (GetQuad (startPosX, endPosX, basis.AxisColor, basis.AxisWidth));
+            vh.AddUIVertexQuad (GetQuad (startPosY, endPosY, basis.AxisColor, basis.AxisWidth));
+
+            Vector2 startPosX1 = endPosY;
+            Vector2 endPosX1 = startPosX1 + new Vector2 (size.x, 0);
+            Vector2 startPosY1 = endPosX;
+            Vector2 endPosY1 = startPosY1 - new Vector2 (0, size.y);
+
+            vh.AddUIVertexQuad (GetQuad (startPosX1, endPosX1, basis.AxisColor, basis.AxisWidth));
+            vh.AddUIVertexQuad (GetQuad (startPosY1, endPosY1, basis.AxisColor, basis.AxisWidth));
             return vh;
         }
 
@@ -287,45 +344,75 @@ namespace SpringGUI {
     }
 
     public class CanvasBoard1 : BaseCanvasBoard {
+        List<stLine> listLines = new List<stLine> ();
+
         public override VertexHelper DrawCanvasBoard (VertexHelper vh, Rect vRect, CanvasBoardData VBasis) {
-            {
-                vh = base.DrawCanvasBoard (vh, vRect, VBasis);
-                foreach (KeyValuePair<int, VertexStream> line in lines) {
-                    if (line.Value.vertexs.Count <= 1)
-                        continue;
-                    //var startPos = GetPos (line.Value.vertexs[0]);
-                    var startPos = line.Value.vertexs[0];
-                    UIVertex[] oldVertexs = new UIVertex[] { };
-                    for (int i = 1; i < line.Value.vertexs.Count; i++) {
-                        //var endPos = GetPos (line.Value.vertexs[i]);
-                        var endPos = line.Value.vertexs[i];
-                        var newVertexs = GetQuad (startPos, endPos, line.Value.color);
-                        if (oldVertexs.Length.Equals (0)) {
-                            oldVertexs = newVertexs;
-                        }
-                        else {
-                            vh.AddUIVertexQuad (new UIVertex[]
-                            {
+            vh = base.DrawCanvasBoard (vh, vRect, VBasis);
+            vh = DrawPointLines (vh, vRect, VBasis);
+            return vh;
+        }
+
+        struct stLine {
+            public Vector2 start;
+            public Vector2 end;
+        }
+
+        public VertexHelper DrawPointLines (VertexHelper vh, Rect vRect, CanvasBoardData VBasis) {
+            listLines.Clear ();
+
+            foreach(var list in VBasis.listPoint) {
+                for (int i = 1; i < list.Count; ++i) {
+                    listLines.Add (new stLine { start = list[i - 1], end = list[i] });
+                }
+            }
+            
+            if(VBasis.isTracingMouse) {
+                var lastList = VBasis.listPoint[VBasis.listPoint.Count - 1];
+                listLines.Add (new stLine { start = lastList[lastList.Count - 1], end = VBasis.mouseLocalPoint });
+            }
+
+            foreach (var line in listLines) {
+                vh.AddUIVertexQuad (GetQuad (line.start, line.end, VBasis.LineColor, VBasis.LineWidth));
+            }
+            return vh;
+        }
+
+        public VertexHelper DrawLines (VertexHelper vh) {
+            foreach (KeyValuePair<int, VertexStream> line in lines) {
+                if (line.Value.vertexs.Count <= 1)
+                    continue;
+                //var startPos = GetPos (line.Value.vertexs[0]);
+                var startPos = line.Value.vertexs[0];
+                UIVertex[] oldVertexs = new UIVertex[] { };
+                for (int i = 1; i < line.Value.vertexs.Count; i++) {
+                    //var endPos = GetPos (line.Value.vertexs[i]);
+                    var endPos = line.Value.vertexs[i];
+                    var newVertexs = GetQuad (startPos, endPos, line.Value.color);
+                    if (oldVertexs.Length.Equals (0)) {
+                        oldVertexs = newVertexs;
+                    }
+                    else {
+                        vh.AddUIVertexQuad (new UIVertex[]
+                        {
                             oldVertexs[1],
                             newVertexs[1],
                             oldVertexs[2],
                             newVertexs[0]
-                            });
-                            vh.AddUIVertexQuad (new UIVertex[]
-                            {
+                        });
+                        vh.AddUIVertexQuad (new UIVertex[]
+                        {
                             newVertexs[0],
                             oldVertexs[1],
                             newVertexs[3],
                             oldVertexs[2]
-                            });
-                            oldVertexs = newVertexs;
-                        }
-                        vh.AddUIVertexQuad (newVertexs);
-                        startPos = endPos;
+                        });
+                        oldVertexs = newVertexs;
                     }
+                    vh.AddUIVertexQuad (newVertexs);
+                    startPos = endPos;
                 }
-                return vh;
             }
+            return vh;
         }
     }
 }
