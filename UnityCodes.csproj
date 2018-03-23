@@ -230,6 +230,7 @@
     <Compile Include="Assets\SpringGUI\Demo\09_RadarMap\RadarMapExample.cs" />
     <Compile Include="Assets\SpringGUI\Demo\10_BarChartGraph\BarChartExample.cs" />
     <Compile Include="Assets\SpringGUI\Demo\11_Ruler\RulerExample.cs" />
+    <Compile Include="Assets\SpringGUI\Demo\12_CanvasBoard\CanvasBoardExample.cs" />
     <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Buttons\DoubleClickButton.cs" />
     <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Buttons\LongClickButton.cs" />
     <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Calendar\Calendar.cs" />
@@ -250,6 +251,7 @@
     <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Data Graph\BarChart\BarBase\BarChartFactory\IBarChartFactory.cs" />
     <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Data Graph\BarChart\BarBase\BarChartSetting.cs" />
     <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Data Graph\BarChart\BarChart.cs" />
+    <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Data Graph\CanvasBoard\CanvasBoard.cs" />
     <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Data Graph\FunctionalGraph\FunctionalGraph.cs" />
     <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Data Graph\FunctionalGraph\FunctionalGraphBase.cs" />
     <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Data Graph\LineChart\LineChart.cs" />
