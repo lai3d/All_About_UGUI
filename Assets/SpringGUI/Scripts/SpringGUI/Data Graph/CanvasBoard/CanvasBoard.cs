@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.UI.Extensions;
 
 namespace SpringGUI {
     public class CanvasBoard : MaskableGraphic, IPointerClickHandler {
@@ -11,12 +12,19 @@ namespace SpringGUI {
         public CanvasBoardData canvasBoardBasis = null;
         public Camera eventCamera;
 
+		public ICanvasBoard _CanvasBoardCreator = null;
+
         //[SerializeField]
         //private List<Vector2> listPoints = new List<Vector2>();
 
         private ICanvasBoard CanvasBoardCreator {
             get {
-                return new CanvasBoard1 ();
+				//return new CanvasBoard1 ();
+
+				if (_CanvasBoardCreator == null) {
+					_CanvasBoardCreator = new CanvasBoard1 ();
+				}
+				return _CanvasBoardCreator;
             }
         }
 
@@ -47,19 +55,54 @@ namespace SpringGUI {
         public void ClearBoard() {
             canvasBoardBasis.listPoint.Clear ();
             canvasBoardBasis.isTracingMouse = false;
-            UpdateGeometry ();
+			SetAllDirty ();
         }
+
+		public void EditLines() {
+			canvasBoardBasis.isTracingMouse = false;
+			canvasBoardBasis.isEditingLines = !canvasBoardBasis.isEditingLines;
+
+			GenerateSelectableLines ();
+		}
+
+		static Vector2 vecOriginal = (new Vector2 (1, 0)).normalized;
+
+		private void GenerateSelectableLines() {
+			foreach (var line in canvasBoardBasis.listLines) {
+				GameObject go = Instantiate (canvasBoardBasis.lineTemplate.gameObject, this.transform);
+				var rt = go.GetComponent<RectTransform> ();
+				rt.anchoredPosition = (line.start + line.end) / 2;
+				float width = Mathf.Abs ((line.end - line.start).magnitude);
+				rt.sizeDelta = new Vector2 (width, 20);
+				Vector2 vec = (line.end - line.start).normalized;
+
+				// calculate rotation
+				float targetRotation = Mathf.Atan2(vec.y, vec.x) * Mathf.Rad2Deg;
+				rt.rotation = Quaternion.Euler(0,0, targetRotation);
+
+				go.SetActive (true);
+			}
+
+			//canvasBoardBasis.listPoint.Clear ();
+			//SetAllDirty ();
+		}
 
         private void Update () {
             if (canvasBoardBasis.isTracingMouse) {
                 Vector2 localPoint;
                 RectTransformUtility.ScreenPointToLocalPointInRectangle (rectTransform, Input.mousePosition, eventCamera, out localPoint);
                 Inject (localPoint, true);
-                UpdateGeometry ();
+				SetAllDirty ();
             }
+			if (canvasBoardBasis.isEditingLines) {
+				//if(Input.GetAxis())
+			}
         }
 
         public void OnPointerClick (PointerEventData eventData) {
+			if (canvasBoardBasis.isEditingLines)
+				return;
+			
             switch(eventData.button) {
             case PointerEventData.InputButton.Left: {
                     Vector2 pos = eventData.position;
@@ -71,12 +114,14 @@ namespace SpringGUI {
                     Inject (localPoint, false);
 
                     canvasBoardBasis.isTracingMouse = true;
-                    UpdateGeometry ();
+					SetAllDirty ();
+					//UpdateGeometry();
                 }
                 break;
             case PointerEventData.InputButton.Right: {
                     canvasBoardBasis.isTracingMouse = false;
-                    UpdateGeometry ();
+					SetAllDirty ();
+					//UpdateGeometry();
                 }
                 break;
             }
@@ -120,12 +165,16 @@ namespace SpringGUI {
         [Header ("Ruler Unit Setting")]
         public Color LineColor = Color.blue;
         public float LineWidth = 5.0f;
-        [HideInInspector]
-        public Dictionary<int, VertexStream> Lines = new Dictionary<int, VertexStream> ();
+        //[HideInInspector]
+        //public Dictionary<int, VertexStream> Lines = new Dictionary<int, VertexStream> ();
+		public List<stLine> listLines = new List<stLine> ();
         [HideInInspector]
         public List<List<Vector2>> listPoint = new List<List<Vector2>>();
         public Vector2 mouseLocalPoint;
         public bool isTracingMouse = false;
+		public bool isEditingLines = false;
+
+		public LineSelectable lineTemplate;
 
         public void AddPoint (Vector2 point, bool bNewList) {
             if (bNewList) {
@@ -137,25 +186,25 @@ namespace SpringGUI {
         }
 
         public void AddLine (IList<Vector2> vertexs) {
-            Lines.Add (Lines.Count, new VertexStream (vertexs, LineColor));
+            //Lines.Add (Lines.Count, new VertexStream (vertexs, LineColor));
         }
 
-        public IList<Vector2> GetLine (int id) {
-            return Lines[id].vertexs;
-        }
+        //public IList<Vector2> GetLine (int id) {
+            //return Lines[id].vertexs;
+        //}
 
         public void ReplaceLines (int[] ids, IList<Vector2>[] vertexs) {
-            for (int i = 0; i < ids.Length; i++)
-                Lines[ids[i]] = new VertexStream (vertexs[i], LineColor);
+            //for (int i = 0; i < ids.Length; i++)
+                //Lines[ids[i]] = new VertexStream (vertexs[i], LineColor);
         }
 
         public void RemoveLine (int[] ids) {
-            foreach (int id in ids)
-                Lines.Remove (id);
+            //foreach (int id in ids)
+                //Lines.Remove (id);
         }
 
         public void ClearLines () {
-            Lines.Clear ();
+            //Lines.Clear ();
         }
     }
 
@@ -168,7 +217,7 @@ namespace SpringGUI {
 
         public virtual VertexHelper DrawCanvasBoard (VertexHelper vh, Rect rect, CanvasBoardData basis) {
             this.basis = basis;
-            lines = basis.Lines;
+            //lines = basis.Lines;
             this.rect = rect;
             size = rect.size;
             //origin = new Vector2 (-size.x / 2.0f, -size.y / 2.0f); // bottom left
@@ -343,18 +392,20 @@ namespace SpringGUI {
         }
     }
 
+	public struct stLine {
+		public Vector2 start;
+		public Vector2 end;
+	}
+
     public class CanvasBoard1 : BaseCanvasBoard {
-        List<stLine> listLines = new List<stLine> ();
+
+		private List<stLine> listLines;
 
         public override VertexHelper DrawCanvasBoard (VertexHelper vh, Rect vRect, CanvasBoardData VBasis) {
             vh = base.DrawCanvasBoard (vh, vRect, VBasis);
+			listLines = VBasis.listLines;
             vh = DrawPointLines (vh, vRect, VBasis);
             return vh;
-        }
-
-        struct stLine {
-            public Vector2 start;
-            public Vector2 end;
         }
 
         public VertexHelper DrawPointLines (VertexHelper vh, Rect vRect, CanvasBoardData VBasis) {

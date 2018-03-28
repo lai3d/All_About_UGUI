@@ -63,6 +63,7 @@
      <Compile Include="Assets\SpringGUI\Demo\10_BarChartGraph\BarChartExample.cs" />
      <Compile Include="Assets\SpringGUI\Demo\11_Ruler\RulerExample.cs" />
      <Compile Include="Assets\SpringGUI\Demo\12_CanvasBoard\CanvasBoardExample.cs" />
+     <Compile Include="Assets\SpringGUI\Demo\12_CanvasBoard\LineSelectable.cs" />
      <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Buttons\DoubleClickButton.cs" />
      <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Buttons\LongClickButton.cs" />
      <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Calendar\Calendar.cs" />
