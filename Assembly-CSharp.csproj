@@ -51,6 +51,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\EmptyClass.cs" />
      <Compile Include="Assets\SpringGUI\Demo\01_FunctionalGraph\FunctionalGraphExample.cs" />
      <Compile Include="Assets\SpringGUI\Demo\02_PieGraph\PieGraphExample.cs" />
      <Compile Include="Assets\SpringGUI\Demo\03_DoubleClickButton_LongClick\DoubleLongClickButton.cs" />
@@ -63,6 +64,8 @@
      <Compile Include="Assets\SpringGUI\Demo\10_BarChartGraph\BarChartExample.cs" />
      <Compile Include="Assets\SpringGUI\Demo\11_Ruler\RulerExample.cs" />
      <Compile Include="Assets\SpringGUI\Demo\12_CanvasBoard\CanvasBoardExample.cs" />
+     <Compile Include="Assets\SpringGUI\Demo\12_CanvasBoard\LineController.cs" />
+     <Compile Include="Assets\SpringGUI\Demo\12_CanvasBoard\LineData.cs" />
      <Compile Include="Assets\SpringGUI\Demo\12_CanvasBoard\LineSelectable.cs" />
      <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Buttons\DoubleClickButton.cs" />
      <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Buttons\LongClickButton.cs" />
