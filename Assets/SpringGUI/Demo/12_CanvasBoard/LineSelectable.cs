@@ -70,6 +70,13 @@ namespace UnityEngine.UI.Extensions
             {
                 //And green if selected.
 				color = selectedColor;
+
+				float translationV = Input.GetAxis("Vertical") * 10.0f;
+				float translationH = Input.GetAxis("Horizontal") * 10.0f;
+				translationV *= Time.deltaTime;
+				translationH *= Time.deltaTime;
+				transform.Translate(translationH, 0, 0);
+				transform.Translate(0, translationV, 0);
             }
 
             //Set the color depending on what the game object has.
