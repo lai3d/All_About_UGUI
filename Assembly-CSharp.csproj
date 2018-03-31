@@ -51,7 +51,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\EmptyClass.cs" />
      <Compile Include="Assets\SpringGUI\Demo\01_FunctionalGraph\FunctionalGraphExample.cs" />
      <Compile Include="Assets\SpringGUI\Demo\02_PieGraph\PieGraphExample.cs" />
      <Compile Include="Assets\SpringGUI\Demo\03_DoubleClickButton_LongClick\DoubleLongClickButton.cs" />

@@ -411,10 +411,8 @@ MonoBehaviour:
   line:
     start:
       vec: {x: 0, y: 0}
-      lines: []
     end:
       vec: {x: 0, y: 0}
-      lines: []
 --- !u!114 &548551650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -426,6 +424,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b442786b4952a4fe7bfaf2c6faa8fcf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 25
 --- !u!1 &802624211
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,6 +8,8 @@ namespace SpringGUI {
 	[RequireComponent(typeof(LineSelectable))]
 	public class LineController : MonoBehaviour {
 
+		public float moveSpeed = 15.0f;
+
 		private LineSelectable lineSelectable;
 		private LineData lineData;
 		private CanvasBoard canvasBoard;
@@ -24,8 +26,8 @@ namespace SpringGUI {
 		// Update is called once per frame
 		void Update () {
 			if (lineSelectable.selected) {
-				float translationV = Input.GetAxis("Vertical") * 10.0f;
-				float translationH = Input.GetAxis("Horizontal") * 10.0f;
+				float translationV = Input.GetAxis("Vertical") * moveSpeed;
+				float translationH = Input.GetAxis("Horizontal") * moveSpeed;
 				translationV *= Time.deltaTime;
 				translationH *= Time.deltaTime;
 
