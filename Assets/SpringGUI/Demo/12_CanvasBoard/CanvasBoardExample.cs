@@ -13,8 +13,11 @@ using UnityEngine.UI.Extensions;
 public class CanvasBoardExample : MonoBehaviour
 {
     public CanvasBoard canvasBoard = null;
+
     public Button eraseAll;
 	public Button editLines;
+    public Button deleteLines;
+
 	public RectTransform selectionMask;
 
 	private SelectionBox selectionBox;
@@ -34,5 +37,9 @@ public class CanvasBoardExample : MonoBehaviour
 			selectionBox.enabled = !selectionBox.enabled;
 			selectionMask.gameObject.SetActive(!selectionMask.gameObject.activeInHierarchy);
 		});
+
+        deleteLines.onClick.AddListener (delegate {
+
+        });
     }
 }
