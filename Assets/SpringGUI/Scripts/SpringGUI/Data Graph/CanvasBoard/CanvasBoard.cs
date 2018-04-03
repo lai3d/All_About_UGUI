@@ -67,6 +67,11 @@ namespace SpringGUI {
         }
 
         private void GenerateSelectableLines () {
+            for (int i = 1; i < this.transform.childCount; ++i) {
+                var child = this.transform.GetChild (i);
+                Destroy (child.gameObject);
+            }
+
             foreach (var line in canvasBoardBasis.listLines) {
                 GameObject go = Instantiate (canvasBoardBasis.lineTemplate.gameObject, this.transform);
                 go.GetComponent<LineData> ().line = line;
