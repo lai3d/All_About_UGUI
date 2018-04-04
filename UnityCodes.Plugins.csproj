@@ -5,16 +5,16 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{4A111CAE-1766-4047-7E43-588CCAE53278}</ProjectGuid>
+    <ProjectGuid>{0D60FB9D-C0E7-5222-4446-3E967535C02D}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <AssemblyName>Assembly-CSharp-Editor</AssemblyName>
+    <AssemblyName>Assembly-CSharp-firstpass</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Unity Full v3.5</TargetFrameworkProfile>
+    <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
     <CompilerResponseFile></CompilerResponseFile>
-    <UnityProjectType>Editor:5</UnityProjectType>
+    <UnityProjectType>GamePlugins:3</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2017.2.0f3</UnityVersion>
     <RootNamespace></RootNamespace>
@@ -187,17 +187,8 @@
     <Reference Include="UnityEngine.UI">
       <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.UI">
-      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/Editor/UnityEditor.UI.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.Networking">
       <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.Networking">
-      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/Editor/UnityEditor.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.TestRunner">
-      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/Editor/UnityEditor.TestRunner.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TestRunner">
       <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/UnityEngine.TestRunner.dll</HintPath>
@@ -208,97 +199,76 @@
     <Reference Include="UnityEngine.Timeline">
       <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Timeline/RuntimeEditor/UnityEngine.Timeline.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.Timeline">
-      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Timeline/Editor/UnityEditor.Timeline.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.TreeEditor">
-      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/TreeEditor/Editor/UnityEditor.TreeEditor.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.UIAutomation">
       <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UIAutomation/UnityEngine.UIAutomation.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.UIAutomation">
-      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UIAutomation/Editor/UnityEditor.UIAutomation.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.GoogleAudioSpatializer">
-      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityGoogleAudioSpatializer/Editor/UnityEditor.GoogleAudioSpatializer.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.GoogleAudioSpatializer">
       <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityGoogleAudioSpatializer/RuntimeEditor/UnityEngine.GoogleAudioSpatializer.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.HoloLens">
-      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/Editor/UnityEditor.HoloLens.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.HoloLens">
       <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.SpatialTracking">
-      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/Editor/UnityEditor.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.SpatialTracking">
       <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.VR">
-      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityVR/Editor/UnityEditor.VR.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.Graphs">
-      <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.WebGL.Extensions">
-      <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.WindowsStandalone.Extensions">
-      <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/windowsstandalonesupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
-      <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/15.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.Advertisements">
-      <HintPath>C:/Users/laiya/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.ads@1.0.7/Editor/UnityEditor.Advertisements.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.Analytics">
       <HintPath>C:/Users/laiya/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.analytics@1.0.1/UnityEngine.Analytics.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.Analytics">
-      <HintPath>C:/Users/laiya/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.analytics@1.0.1/Editor/UnityEditor.Analytics.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Purchasing">
       <HintPath>C:/Users/laiya/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.purchasing@1.0.1/UnityEngine.Purchasing.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.Purchasing">
-      <HintPath>C:/Users/laiya/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.purchasing@1.0.1/Editor/UnityEditor.Purchasing.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="UnityCodes.Plugins.csproj">
-      <Project>{0D60FB9D-C0E7-5222-4446-3E967535C02D}</Project>
-      <Name>UnityCodes.Plugins</Name>
-    </ProjectReference>
-    <ProjectReference Include="UnityCodes.csproj">
-      <Project>{DC62ACB9-543F-67C5-4233-8B87E7EEB5D3}</Project>
-      <Name>UnityCodes</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Assets\SpringGUI\Editor\SpringGUI\ColorPicker\ColoredTapeEditor.cs" />
-    <Compile Include="Assets\SpringGUI\Editor\SpringGUI\ColorPicker\MainColorTapeEditor.cs" />
-    <Compile Include="Assets\SpringGUI\Editor\SpringGUI\ColorPicker\MultiColoredTapeEditor.cs" />
-    <Compile Include="Assets\SpringGUI\Editor\SpringGUI\ColorPicker\SuckerImageEditor.cs" />
-    <Compile Include="Assets\SpringGUI\Editor\SpringGUI\Common\SpringGUIMenuOptions.cs" />
-    <Compile Include="Assets\SpringGUI\Editor\SpringGUI\UITree\UITreeEditor.cs" />
-    <Compile Include="Assets\unity-ui-extensions\Editor\AccordionElementEditor.cs" />
-    <Compile Include="Assets\unity-ui-extensions\Editor\BezierLineRendererEditor.cs" />
-    <Compile Include="Assets\unity-ui-extensions\Editor\BoxSliderEditor.cs" />
-    <Compile Include="Assets\unity-ui-extensions\Editor\CanvasGroupActivator.cs" />
-    <Compile Include="Assets\unity-ui-extensions\Editor\CUIBezierCurveEditor.cs" />
-    <Compile Include="Assets\unity-ui-extensions\Editor\CUIGraphicEditor.cs" />
-    <Compile Include="Assets\unity-ui-extensions\Editor\CUIImageEditor.cs" />
-    <Compile Include="Assets\unity-ui-extensions\Editor\CUITextEditor.cs" />
-    <Compile Include="Assets\unity-ui-extensions\Editor\NonDrawingGraphicEditor.cs" />
-    <Compile Include="Assets\unity-ui-extensions\Editor\ReadOnlyDrawer.cs" />
-    <Compile Include="Assets\unity-ui-extensions\Editor\TextPicEditor.cs" />
-    <Compile Include="Assets\unity-ui-extensions\Editor\uGUITools.cs" />
-    <Compile Include="Assets\unity-ui-extensions\Editor\UIExtensionsMenuOptions.cs" />
+    <Compile Include="Assets\Plugins\RuntimeInspector\ExternalResources\ColorWheel\ColorWheelControl.cs" />
+    <Compile Include="Assets\Plugins\RuntimeInspector\Scripts\RuntimeHierarchy.cs" />
+    <Compile Include="Assets\Plugins\RuntimeInspector\Scripts\RuntimeHierarchy\Helpers\PseudoSceneSourceTransform.cs" />
+    <Compile Include="Assets\Plugins\RuntimeInspector\Scripts\RuntimeHierarchy\HierarchyItem.cs" />
+    <Compile Include="Assets\Plugins\RuntimeInspector\Scripts\RuntimeHierarchy\HierarchyItemRoot.cs" />
+    <Compile Include="Assets\Plugins\RuntimeInspector\Scripts\RuntimeHierarchy\HierarchyItemTransform.cs" />
+    <Compile Include="Assets\Plugins\RuntimeInspector\Scripts\RuntimeHierarchy\HierarchyRootPseudoScene.cs" />
+    <Compile Include="Assets\Plugins\RuntimeInspector\Scripts\RuntimeHierarchy\HierarchyRootScene.cs" />
+    <Compile Include="Assets\Plugins\RuntimeInspector\Scripts\RuntimeHierarchy\IHierarchyRootContent.cs" />
+    <Compile Include="Assets\Plugins\RuntimeInspector\Scripts\RuntimeInspector.cs" />
+    <Compile Include="Assets\Plugins\RuntimeInspector\Scripts\RuntimeInspector\Attributes\RuntimeInspectorButtonAttribute.cs" />
+    <Compile Include="Assets\Plugins\RuntimeInspector\Scripts\RuntimeInspector\Fields\ArrayField.cs" />
+    <Compile Include="Assets\Plugins\RuntimeInspector\Scripts\RuntimeInspector\Fields\BoolField.cs" />
+    <Compile Include="Assets\Plugins\RuntimeInspector\Scripts\RuntimeInspector\Fields\BoundsField.cs" />
+    <Compile Include="Assets\Plugins\RuntimeInspector\Scripts\RuntimeInspector\Fields\ColorField.cs" />
+    <Compile Include="Assets\Plugins\RuntimeInspector\Scripts\RuntimeInspector\Fields\DecimalField.cs" />
+    <Compile Include="Assets\Plugins\RuntimeInspector\Scripts\RuntimeInspector\Fields\EnumField.cs" />
+    <Compile Include="Assets\Plugins\RuntimeInspector\Scripts\RuntimeInspector\Fields\ExposedMethodField.cs" />
+    <Compile Include="Assets\Plugins\RuntimeInspector\Scripts\RuntimeInspector\Fields\GameObjectField.cs" />
+    <Compile Include="Assets\Plugins\RuntimeInspector\Scripts\RuntimeInspector\Fields\InspectorField.cs" />
+    <Compile Include="Assets\Plugins\RuntimeInspector\Scripts\RuntimeInspector\Fields\IntegerField.cs" />
+    <Compile Include="Assets\Plugins\RuntimeInspector\Scripts\RuntimeInspector\Fields\ObjectField.cs" />
+    <Compile Include="Assets\Plugins\RuntimeInspector\Scripts\RuntimeInspector\Fields\ObjectReferenceField.cs" />
+    <Compile Include="Assets\Plugins\RuntimeInspector\Scripts\RuntimeInspector\Fields\RectField.cs" />
+    <Compile Include="Assets\Plugins\RuntimeInspector\Scripts\RuntimeInspector\Fields\StringField.cs" />
+    <Compile Include="Assets\Plugins\RuntimeInspector\Scripts\RuntimeInspector\Fields\TextureReferenceField.cs" />
+    <Compile Include="Assets\Plugins\RuntimeInspector\Scripts\RuntimeInspector\Fields\Vector2Field.cs" />
+    <Compile Include="Assets\Plugins\RuntimeInspector\Scripts\RuntimeInspector\Fields\Vector3Field.cs" />
+    <Compile Include="Assets\Plugins\RuntimeInspector\Scripts\RuntimeInspector\Fields\Vector4Field.cs" />
+    <Compile Include="Assets\Plugins\RuntimeInspector\Scripts\RuntimeInspector\Helpers\BoundInputField.cs" />
+    <Compile Include="Assets\Plugins\RuntimeInspector\Scripts\RuntimeInspector\Helpers\ColorPicker\ColorPicker.cs" />
+    <Compile Include="Assets\Plugins\RuntimeInspector\Scripts\RuntimeInspector\Helpers\ColorPicker\ColorPickerAlphaSlider.cs" />
+    <Compile Include="Assets\Plugins\RuntimeInspector\Scripts\RuntimeInspector\Helpers\DraggedReferenceItem.cs" />
+    <Compile Include="Assets\Plugins\RuntimeInspector\Scripts\RuntimeInspector\Helpers\DraggedReferenceSourceCamera.cs" />
+    <Compile Include="Assets\Plugins\RuntimeInspector\Scripts\RuntimeInspector\Helpers\DraggedReferenceSourceUI.cs" />
+    <Compile Include="Assets\Plugins\RuntimeInspector\Scripts\RuntimeInspector\Helpers\ExposedMethod.cs" />
+    <Compile Include="Assets\Plugins\RuntimeInspector\Scripts\RuntimeInspector\Helpers\ExposedVariablesEnumerator.cs" />
+    <Compile Include="Assets\Plugins\RuntimeInspector\Scripts\RuntimeInspector\Helpers\ObjectReferencePicker\ObjectReferencePicker.cs" />
+    <Compile Include="Assets\Plugins\RuntimeInspector\Scripts\RuntimeInspector\Helpers\ObjectReferencePicker\ObjectReferencePickerItem.cs" />
+    <Compile Include="Assets\Plugins\RuntimeInspector\Scripts\RuntimeInspector\Helpers\PointerEventListener.cs" />
+    <Compile Include="Assets\Plugins\RuntimeInspector\Scripts\RuntimeInspector\Helpers\RecycledListView\IListViewAdapter.cs" />
+    <Compile Include="Assets\Plugins\RuntimeInspector\Scripts\RuntimeInspector\Helpers\RecycledListView\RecycledListItem.cs" />
+    <Compile Include="Assets\Plugins\RuntimeInspector\Scripts\RuntimeInspector\Helpers\RecycledListView\RecycledListView.cs" />
+    <Compile Include="Assets\Plugins\RuntimeInspector\Scripts\RuntimeInspector\Helpers\RuntimeInspectorSettings.cs" />
+    <Compile Include="Assets\Plugins\RuntimeInspector\Scripts\RuntimeInspector\Helpers\RuntimeInspectorUtils.cs" />
+    <Compile Include="Assets\Plugins\RuntimeInspector\Scripts\RuntimeInspector\Helpers\VariableSet.cs" />
+    <Compile Include="Assets\Plugins\RuntimeInspector\Scripts\RuntimeInspector\Helpers\WindowDragHandler.cs" />
+    <Compile Include="Assets\Plugins\RuntimeInspector\Scripts\RuntimeInspector\Skin\SkinnedWindow.cs" />
+    <Compile Include="Assets\Plugins\RuntimeInspector\Scripts\RuntimeInspector\Skin\SkinUtils.cs" />
+    <Compile Include="Assets\Plugins\RuntimeInspector\Scripts\RuntimeInspector\Skin\UISkin.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Plugins\RuntimeInspector\ExternalResources\ColorWheel\LICENSE.txt" />

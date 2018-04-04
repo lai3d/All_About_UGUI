@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2017
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityCodes", "UnityCodes.csproj", "{DC62ACB9-543F-67C5-4233-8B87E7EEB5D3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityCodes.Plugins", "UnityCodes.Plugins.csproj", "{0D60FB9D-C0E7-5222-4446-3E967535C02D}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityCodes.Editor", "UnityCodes.Editor.csproj", "{4A111CAE-1766-4047-7E43-588CCAE53278}"
 EndProject
 Global
@@ -15,6 +17,10 @@ Global
 		{DC62ACB9-543F-67C5-4233-8B87E7EEB5D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC62ACB9-543F-67C5-4233-8B87E7EEB5D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC62ACB9-543F-67C5-4233-8B87E7EEB5D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D60FB9D-C0E7-5222-4446-3E967535C02D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D60FB9D-C0E7-5222-4446-3E967535C02D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D60FB9D-C0E7-5222-4446-3E967535C02D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D60FB9D-C0E7-5222-4446-3E967535C02D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4A111CAE-1766-4047-7E43-588CCAE53278}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4A111CAE-1766-4047-7E43-588CCAE53278}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A111CAE-1766-4047-7E43-588CCAE53278}.Release|Any CPU.ActiveCfg = Release|Any CPU
