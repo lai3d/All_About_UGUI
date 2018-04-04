@@ -240,6 +240,7 @@
     <Compile Include="Assets\SpringGUI\Demo\12_CanvasBoard\LineController.cs" />
     <Compile Include="Assets\SpringGUI\Demo\12_CanvasBoard\LineData.cs" />
     <Compile Include="Assets\SpringGUI\Demo\12_CanvasBoard\LineSelectable.cs" />
+    <Compile Include="Assets\SpringGUI\Demo\13_Shapes\UICircle2.cs" />
     <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Buttons\DoubleClickButton.cs" />
     <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Buttons\LongClickButton.cs" />
     <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Calendar\Calendar.cs" />
