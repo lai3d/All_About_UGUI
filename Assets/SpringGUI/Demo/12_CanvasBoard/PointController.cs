@@ -7,12 +7,14 @@ using UnityEngine.EventSystems;
 
 namespace SpringGUI {
 
-    [RequireComponent (typeof (PointSelectable))]
+    //[RequireComponent (typeof (PointSelectable))]
+    [RequireComponent(typeof(Selectable))]
     public class PointController : MonoBehaviour, IDragHandler {
 
         public float moveSpeed = 15.0f;
 
-        private PointSelectable pointSelectable;
+        //private PointSelectable pointSelectable;
+        private Selectable selectable;
         private PointData pointData;
         private CanvasBoard canvasBoard;
 
@@ -22,7 +24,8 @@ namespace SpringGUI {
 
         // Use this for initialization
         void Start () {
-            pointSelectable = GetComponent<PointSelectable> ();
+            //pointSelectable = GetComponent<PointSelectable> ();
+            selectable = GetComponent<Selectable> ();
             pointData = GetComponent<PointData> ();
             canvasBoard = this.transform.parent.parent.GetComponent<CanvasBoard> ();
             if(canvasBoard == null) {
@@ -34,9 +37,11 @@ namespace SpringGUI {
 
         // Update is called once per frame
         void Update () {
-            if (!pointSelectable.selected) {
+            //if (!pointSelectable.selected) {
+            //    return;
+            //}
+            if (EventSystem.current.currentSelectedGameObject != this.gameObject)
                 return;
-            }
             // Delete
             if (Input.GetKeyUp (KeyCode.Delete)) {
                 canvasBoard.DeletePoint (pointData.point);
@@ -104,7 +109,7 @@ namespace SpringGUI {
 
         public void OnDrag (PointerEventData eventData) {
             Debug.Log ("OnDrag");
-            if (pointSelectable.selected || pointSelectable.preSelected) {
+            //if (pointSelectable.selected || pointSelectable.preSelected) {
 
                 // Move with mouse drag
                 float translationV = eventData.delta.y;
@@ -125,7 +130,7 @@ namespace SpringGUI {
                     canvasBoard.CalculatePoints ();
                     canvasBoard.CalculateLines ();
                 }
-            }
+            //}
         }
     }
 }

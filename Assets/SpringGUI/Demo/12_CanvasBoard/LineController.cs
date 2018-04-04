@@ -7,12 +7,12 @@ using UnityEngine.EventSystems;
 
 namespace SpringGUI {
 
-    [RequireComponent (typeof (LineSelectable))]
+    //[RequireComponent (typeof (LineSelectable))]
     public class LineController : MonoBehaviour, IDragHandler {
 
         public float moveSpeed = 15.0f;
 
-        private LineSelectable lineSelectable;
+        //private LineSelectable lineSelectable;
         private LineData lineData;
         private CanvasBoard canvasBoard;
 
@@ -22,7 +22,7 @@ namespace SpringGUI {
 
         // Use this for initialization
         void Start () {
-            lineSelectable = GetComponent<LineSelectable> ();
+            //lineSelectable = GetComponent<LineSelectable> ();
             lineData = GetComponent<LineData> ();
             canvasBoard = this.transform.parent.parent.GetComponent<CanvasBoard> ();
             if(canvasBoard == null) {
@@ -34,9 +34,11 @@ namespace SpringGUI {
 
         // Update is called once per frame
         void Update () {
-            if (!lineSelectable.selected) {
+            //if (!lineSelectable.selected) {
+            //    return;
+            //}
+            if (EventSystem.current.currentSelectedGameObject != this.gameObject)
                 return;
-            }
             // Delete
             if (Input.GetKeyUp (KeyCode.Delete)) {
                 canvasBoard.DeleteLine (lineData.line);
@@ -105,7 +107,7 @@ namespace SpringGUI {
 
         public void OnDrag (PointerEventData eventData) {
             Debug.Log ("OnDrag");
-            if (lineSelectable.selected || lineSelectable.preSelected) {
+            //if (lineSelectable.selected || lineSelectable.preSelected) {
 
                 // Move with mouse drag
                 float translationV = eventData.delta.y;
@@ -126,7 +128,7 @@ namespace SpringGUI {
                     canvasBoard.CalculatePoints ();
                     canvasBoard.CalculateLines ();
                 }
-            }
+            //}
         }
     }
 }

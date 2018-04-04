@@ -299,6 +299,7 @@
     <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\UITree\UITreeData.cs" />
     <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\UITree\UITreeNode.cs" />
     <Compile Include="Assets\SpringShader\Demo\01_LowPoly\LowPoly.cs" />
+    <Compile Include="Assets\unity-ui-extensions\Examples\2D_Primitives\Draggable.cs" />
     <Compile Include="Assets\unity-ui-extensions\Examples\ComboBox\ComboBoxChanged.cs" />
     <Compile Include="Assets\unity-ui-extensions\Examples\Cooldown\CooldownEffect_Image.cs" />
     <Compile Include="Assets\unity-ui-extensions\Examples\Cooldown\CooldownEffect_SAUIM.cs" />

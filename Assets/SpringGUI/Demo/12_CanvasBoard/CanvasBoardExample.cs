@@ -18,13 +18,13 @@ public class CanvasBoardExample : MonoBehaviour
 	public Button editLines;
     public Button deleteLines;
 
-	public RectTransform selectionMask;
+	//public RectTransform selectionMask;
 
-	private SelectionBox selectionBox;
+	//private SelectionBox selectionBox;
 
     public void Awake()
     {
-		selectionBox = GetComponent<SelectionBox> ();
+		//selectionBox = GetComponent<SelectionBox> ();
     }
 
     private void Start () {
@@ -34,8 +34,8 @@ public class CanvasBoardExample : MonoBehaviour
 
 		editLines.onClick.AddListener (delegate {
 			canvasBoard.EditLines();
-			selectionBox.enabled = !selectionBox.enabled;
-			selectionMask.gameObject.SetActive(!selectionMask.gameObject.activeInHierarchy);
+			//selectionBox.enabled = !selectionBox.enabled;
+			//selectionMask.gameObject.SetActive(!selectionMask.gameObject.activeInHierarchy);
 		});
 
         deleteLines.onClick.AddListener (delegate {

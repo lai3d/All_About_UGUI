@@ -47,8 +47,8 @@ namespace SpringGUI {
         public bool isTracingMouse = false;
         public bool isEditingLines = false;
 
-        public LineSelectable lineTemplate;
-        public PointSelectable pointTemplate;
+        public RectTransform lineTemplate;
+        public RectTransform pointTemplate;
 
         public RectTransform linesRoot;
         public RectTransform pointsRoot;
