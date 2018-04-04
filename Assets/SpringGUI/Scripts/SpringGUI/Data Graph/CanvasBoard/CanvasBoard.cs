@@ -67,13 +67,14 @@ namespace SpringGUI {
         }
 
         private void GenerateSelectableLines () {
-            for (int i = 1; i < this.transform.childCount; ++i) {
-                var child = this.transform.GetChild (i);
+            // lines
+            for (int i = 1; i < canvasBoardBasis.linesRoot.transform.childCount; ++i) {
+                var child = canvasBoardBasis.linesRoot.transform.GetChild (i);
                 Destroy (child.gameObject);
             }
 
             foreach (var line in canvasBoardBasis.listLines) {
-                GameObject go = Instantiate (canvasBoardBasis.lineTemplate.gameObject, this.transform);
+                GameObject go = Instantiate (canvasBoardBasis.lineTemplate.gameObject, canvasBoardBasis.linesRoot.transform);
                 go.GetComponent<LineData> ().line = line;
                 var rt = go.GetComponent<RectTransform> ();
                 rt.anchoredPosition = (line.start.vec + line.end.vec) / 2;
@@ -88,13 +89,30 @@ namespace SpringGUI {
                 go.SetActive (true);
             }
 
+            // points
+            for (int i = 1; i < canvasBoardBasis.pointsRoot.transform.childCount; ++i) {
+                var child = canvasBoardBasis.pointsRoot.transform.GetChild (i);
+                Destroy (child.gameObject);
+            }
+
+            foreach (var list in canvasBoardBasis.listPoint) {
+                foreach (var point in list) {
+                    GameObject go = Instantiate (canvasBoardBasis.pointTemplate.gameObject, canvasBoardBasis.pointsRoot.transform);
+                    go.GetComponent<PointData> ().point = point;
+                    var rt = go.GetComponent<RectTransform> ();
+                    rt.anchoredPosition = point.vec;
+
+                    go.SetActive (true);
+                }
+            }
+
             //canvasBoardBasis.listPoint.Clear ();
             //SetAllDirty ();
         }
 
         public void CalculateLines () {
-            for (int i = 0; i < this.transform.childCount; ++i) {
-                var child = this.transform.GetChild (i);
+            for (int i = 0; i < canvasBoardBasis.linesRoot.transform.childCount; ++i) {
+                var child = canvasBoardBasis.linesRoot.transform.GetChild (i);
                 if (child.gameObject.activeInHierarchy) {
                     var line = child.GetComponent<LineData> ().line;
                     var rt = child.GetComponent<RectTransform> ();
@@ -107,6 +125,17 @@ namespace SpringGUI {
                     // calculate rotation
                     float targetRotation = Mathf.Atan2 (vec.y, vec.x) * Mathf.Rad2Deg;
                     rt.localRotation = Quaternion.Euler (0, 0, targetRotation);
+                }
+            }
+        }
+
+        public void CalculatePoints () {
+            for (int i = 0; i < canvasBoardBasis.pointsRoot.transform.childCount; ++i) {
+                var child = canvasBoardBasis.pointsRoot.transform.GetChild (i);
+                if (child.gameObject.activeInHierarchy) {
+                    var point = child.GetComponent<PointData> ().point;
+                    var rt = child.GetComponent<RectTransform> ();
+                    rt.anchoredPosition = point.vec;
                 }
             }
         }
@@ -180,6 +209,10 @@ namespace SpringGUI {
             
             if (dirty)
                 SetAllDirty ();
+        }
+
+        public void DeletePoint(Point point) {
+
         }
 
         private void Update () {

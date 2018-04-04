@@ -48,6 +48,10 @@ namespace SpringGUI {
         public bool isEditingLines = false;
 
         public LineSelectable lineTemplate;
+        public PointSelectable pointTemplate;
+
+        public RectTransform linesRoot;
+        public RectTransform pointsRoot;
 
         public void AddPoint (Vector2 point, bool bNewList) {
             if (bNewList) {

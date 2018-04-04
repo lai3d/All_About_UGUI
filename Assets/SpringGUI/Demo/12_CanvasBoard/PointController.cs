@@ -7,13 +7,13 @@ using UnityEngine.EventSystems;
 
 namespace SpringGUI {
 
-    [RequireComponent (typeof (LineSelectable))]
-    public class LineController : MonoBehaviour, IDragHandler {
+    [RequireComponent (typeof (PointSelectable))]
+    public class PointController : MonoBehaviour, IDragHandler {
 
         public float moveSpeed = 15.0f;
 
-        private LineSelectable lineSelectable;
-        private LineData lineData;
+        private PointSelectable pointSelectable;
+        private PointData pointData;
         private CanvasBoard canvasBoard;
 
         private Vector3[] v = new Vector3[4];
@@ -22,8 +22,8 @@ namespace SpringGUI {
 
         // Use this for initialization
         void Start () {
-            lineSelectable = GetComponent<LineSelectable> ();
-            lineData = GetComponent<LineData> ();
+            pointSelectable = GetComponent<PointSelectable> ();
+            pointData = GetComponent<PointData> ();
             canvasBoard = this.transform.parent.parent.GetComponent<CanvasBoard> ();
             if(canvasBoard == null) {
                 Debug.LogError ("Get component CanvasBoard failed!");
@@ -34,12 +34,12 @@ namespace SpringGUI {
 
         // Update is called once per frame
         void Update () {
-            if (!lineSelectable.selected) {
+            if (!pointSelectable.selected) {
                 return;
             }
             // Delete
             if (Input.GetKeyUp (KeyCode.Delete)) {
-                canvasBoard.DeleteLine (lineData.line);
+                canvasBoard.DeletePoint (pointData.point);
 
                 Destroy (gameObject);
             }
@@ -68,8 +68,7 @@ namespace SpringGUI {
                     var start3 = (v[0] + v[1]) / 2;
                     var end3 = (v[2] + v[3]) / 2;
 
-                    lineData.line.start.vec = canvasBoard.transform.InverseTransformPoint (start3);
-                    lineData.line.end.vec = canvasBoard.transform.InverseTransformPoint (end3);
+                    pointData.point.vec = canvasBoard.transform.InverseTransformPoint ((start3 + end3) / 2);
 
                     canvasBoard.CalculateLines ();
                 }
@@ -105,7 +104,7 @@ namespace SpringGUI {
 
         public void OnDrag (PointerEventData eventData) {
             Debug.Log ("OnDrag");
-            if (lineSelectable.selected || lineSelectable.preSelected) {
+            if (pointSelectable.selected || pointSelectable.preSelected) {
 
                 // Move with mouse drag
                 float translationV = eventData.delta.y;
@@ -116,12 +115,12 @@ namespace SpringGUI {
                     transform.Translate (translationH, translationV, 0, transform.parent);
 
                     var rt = GetComponent<RectTransform> ();
-                    rt.GetWorldCorners (v);
-                    var start3 = (v[0] + v[1]) / 2;
-                    var end3 = (v[2] + v[3]) / 2;
+                    //rt.GetWorldCorners (v);
+                    //var start3 = (v[0] + v[1]) / 2;
+                    //var end3 = (v[2] + v[3]) / 2;
 
-                    lineData.line.start.vec = canvasBoard.transform.InverseTransformPoint (start3);
-                    lineData.line.end.vec = canvasBoard.transform.InverseTransformPoint (end3);
+                    //pointData.point.vec = canvasBoard.transform.InverseTransformPoint ((start3 + end3) / 2);
+                    pointData.point.vec = rt.anchoredPosition;
 
                     canvasBoard.CalculatePoints ();
                     canvasBoard.CalculateLines ();
