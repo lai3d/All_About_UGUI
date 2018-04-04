@@ -46,6 +46,9 @@ namespace SpringGUI {
         public Vector2 mouseLocalPoint;
         public bool isTracingMouse = false;
         public bool isEditingLines = false;
+        public bool isDetectNear = false;
+
+        public float squareMagnitudeValue = 1.0f;
 
         public RectTransform lineTemplate;
         public RectTransform pointTemplate;
@@ -54,11 +57,32 @@ namespace SpringGUI {
         public RectTransform pointsRoot;
 
         public void AddPoint (Vector2 point, bool bNewList) {
-            if (bNewList) {
-                listPoint.Add (new List<Point> () { new Point { vec = point } });
+            if (isDetectNear) {
+                if(bNewList) {
+                    listPoint.Add (new List<Point> () { new Point { vec = point } });
+                } else {
+                    bool bFound = false;
+                    foreach(var list in listPoint) {
+                        foreach(var p in list) {
+                            if((point - p.vec).sqrMagnitude <= squareMagnitudeValue) {
+                                bFound = true;
+                                break;
+                            }
+                        }
+                    }
+
+                    if(!bFound) {
+                        listPoint[listPoint.Count - 1].Add (new Point { vec = point });
+                    }
+                }
             }
             else {
-                listPoint[listPoint.Count - 1].Add (new Point { vec = point });
+                if (bNewList) {
+                    listPoint.Add (new List<Point> () { new Point { vec = point } });
+                }
+                else {
+                    listPoint[listPoint.Count - 1].Add (new Point { vec = point });
+                }
             }
         }
 
