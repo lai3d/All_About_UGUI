@@ -243,6 +243,8 @@
     <Compile Include="Assets\SpringGUI\Demo\12_CanvasBoard\PointController.cs" />
     <Compile Include="Assets\SpringGUI\Demo\12_CanvasBoard\PointData.cs" />
     <Compile Include="Assets\SpringGUI\Demo\12_CanvasBoard\PointSelectable.cs" />
+    <Compile Include="Assets\SpringGUI\Demo\12_CanvasBoard\RoomController.cs" />
+    <Compile Include="Assets\SpringGUI\Demo\12_CanvasBoard\RoomData.cs" />
     <Compile Include="Assets\SpringGUI\Demo\13_Shapes\UICircle2.cs" />
     <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Buttons\DoubleClickButton.cs" />
     <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Buttons\LongClickButton.cs" />

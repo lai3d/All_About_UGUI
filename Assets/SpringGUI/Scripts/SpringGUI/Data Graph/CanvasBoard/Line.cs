@@ -5,6 +5,23 @@ using UnityEngine;
 
 namespace SpringGUI {
 
+    public class Room /*: IEquatable<Room>*/ {
+        public List<Point> points;
+        public List<Line> lines;
+
+        //public Room () {
+        //}
+
+        //public bool Equals (Room other) {
+        //    if (other == null)
+        //        return false;
+        //    if (this.start == other.start && this.end == other.end)
+        //        return true;
+        //    else
+        //        return false;
+        //}
+    }
+
     //[Serializable]
     public class Line : IEquatable<Line> {
         public Point start;
@@ -43,5 +60,4 @@ namespace SpringGUI {
                 return false;
         }
     }
-
 }

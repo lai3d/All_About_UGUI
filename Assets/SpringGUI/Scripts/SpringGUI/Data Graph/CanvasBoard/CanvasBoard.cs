@@ -40,9 +40,9 @@ namespace SpringGUI {
             OnEnable ();
         }
 
-        public void Inject (IList<Vector2> vertexs) {
-            canvasBoardBasis.AddLine (vertexs);
-        }
+        //public void Inject (IList<Vector2> vertexs) {
+        //    canvasBoardBasis.AddLine (vertexs);
+        //}
 
         public void Inject (Vector2 point, bool bMousePosition = false) {
             if (!bMousePosition) {
@@ -51,6 +51,10 @@ namespace SpringGUI {
             else {
                 canvasBoardBasis.mouseLocalPoint = point;
             }
+        }
+
+        public void InjectExist (Point point) {
+            canvasBoardBasis.AddExistPoint (point);
         }
 
         public void ClearBoard () {

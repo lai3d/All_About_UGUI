@@ -9,7 +9,7 @@ namespace SpringGUI {
 
     //[RequireComponent (typeof (PointSelectable))]
     [RequireComponent(typeof(Selectable))]
-    public class PointController : MonoBehaviour, IDragHandler {
+    public class PointController : MonoBehaviour, IDragHandler, IPointerClickHandler {
 
         public float moveSpeed = 15.0f;
 
@@ -131,6 +131,12 @@ namespace SpringGUI {
                     canvasBoard.CalculateLines ();
                 }
             //}
+        }
+
+        public void OnPointerClick (PointerEventData eventData) {
+            if(canvasBoard.canvasBoardBasis.drawingState == DrawingState.Walls)
+                canvasBoard.InjectExist (pointData.point);
+            //canvasBoard.canvasBoardBasis.isTracingMouse = true;
         }
     }
 }

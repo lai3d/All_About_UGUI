@@ -55,9 +55,11 @@ namespace SpringGUI {
 
         public RectTransform lineTemplate;
         public RectTransform pointTemplate;
+        public RectTransform roomTemplate;
 
         public RectTransform linesRoot;
         public RectTransform pointsRoot;
+        public RectTransform roomsRoot;
 
         private bool FindPointNear (Vector2 point) {
             foreach (var list in listPoint) {
@@ -69,6 +71,16 @@ namespace SpringGUI {
             }
             return false;
         }
+
+        //private bool FindPoint(Vector2 vec, out Point point) {
+        //    foreach (var list in listPoint) {
+        //        foreach (var p in list) {
+        //            if ((point - p.vec).sqrMagnitude <= squareMagnitudeValue) {
+        //                return true;
+        //            }
+        //        }
+        //    }
+        //}
 
         public void AddPoint (Vector2 point, bool bNewList) {
             if (isDetectNear) {
@@ -89,6 +101,7 @@ namespace SpringGUI {
                     var list = listPoint[listPoint.Count - 1];
                     Point start = list[list.Count - 1];
                     Point end = new Point { vec = point };
+
                     list.Add (end);
 
                     bool bFirstLine = list.Count == 2;
@@ -131,6 +144,46 @@ namespace SpringGUI {
                         go.SetActive (true);
                     }
                 }
+            }
+        }
+
+        public void AddExistPoint(Point point) {
+            var list = listPoint[listPoint.Count - 1];
+            Point start = list[list.Count - 1];
+            Point end = point;
+
+            //list.Add (end);
+
+            //bool bFirstLine = list.Count == 2;
+
+            // Generate line and points
+            var line = new Line (start, end);
+            listLines.Add (line);
+            // line
+            {
+                GameObject go = GameObject.Instantiate (lineTemplate.gameObject, linesRoot.transform);
+                go.GetComponent<LineData> ().line = line;
+                var rt = go.GetComponent<RectTransform> ();
+                rt.anchoredPosition = (start.vec + end.vec) / 2;
+                float width = Mathf.Abs ((end.vec - start.vec).magnitude);
+                rt.sizeDelta = new Vector2 (width, 20);
+                Vector2 vec = (end.vec - start.vec).normalized;
+
+                // calculate rotation
+                float targetRotation = Mathf.Atan2 (vec.y, vec.x) * Mathf.Rad2Deg;
+                rt.localRotation = Quaternion.Euler (0, 0, targetRotation);
+
+                go.SetActive (true);
+            }
+            // Room
+            var room = new Room ();
+            {
+                GameObject go = GameObject.Instantiate (roomTemplate.gameObject, roomsRoot.transform);
+                go.GetComponent<RoomData> ().room = room;
+                var rt = go.GetComponent<RectTransform> ();
+                rt.anchoredPosition = (list[0].vec + list[2].vec) / 2;
+
+                go.SetActive (true);
             }
         }
 
