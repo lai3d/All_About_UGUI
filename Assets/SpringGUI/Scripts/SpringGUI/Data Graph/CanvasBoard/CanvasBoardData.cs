@@ -56,22 +56,23 @@ namespace SpringGUI {
         public RectTransform linesRoot;
         public RectTransform pointsRoot;
 
+        private bool FindPointNear(Vector2 point) {
+            foreach (var list in listPoint) {
+                foreach (var p in list) {
+                    if ((point - p.vec).sqrMagnitude <= squareMagnitudeValue) {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
         public void AddPoint (Vector2 point, bool bNewList) {
             if (isDetectNear) {
                 if(bNewList) {
                     listPoint.Add (new List<Point> () { new Point { vec = point } });
                 } else {
-                    bool bFound = false;
-                    foreach(var list in listPoint) {
-                        foreach(var p in list) {
-                            if((point - p.vec).sqrMagnitude <= squareMagnitudeValue) {
-                                bFound = true;
-                                break;
-                            }
-                        }
-                    }
-
-                    if(!bFound) {
+                    if(!FindPointNear(point)) {
                         listPoint[listPoint.Count - 1].Add (new Point { vec = point });
                     }
                 }

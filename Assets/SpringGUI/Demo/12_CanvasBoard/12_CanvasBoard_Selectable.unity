@@ -227,8 +227,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0.20784314, g: 0.5411765, b: 1, a: 0.6117647}
-    m_HighlightedColor: {r: 0, g: 1, b: 0, a: 0.60784316}
-    m_PressedColor: {r: 0.92616636, g: 1, b: 0.2352941, a: 0.6392157}
+    m_HighlightedColor: {r: 0, g: 1, b: 0, a: 1}
+    m_PressedColor: {r: 1, g: 1, b: 0, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -559,7 +559,7 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 0.11764706, g: 0.23137255, b: 0.9843137, a: 0.6}
     m_HighlightedColor: {r: 0, g: 1, b: 0, a: 0.6}
-    m_PressedColor: {r: 0.78223956, g: 0.9852941, b: 0.06520329, a: 0.641}
+    m_PressedColor: {r: 1, g: 0.9852941, b: 0, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -1035,6 +1035,8 @@ MonoBehaviour:
     mouseLocalPoint: {x: 0, y: 0}
     isTracingMouse: 0
     isEditingLines: 0
+    isDetectNear: 0
+    squareMagnitudeValue: 1
     lineTemplate: {fileID: 548551645}
     pointTemplate: {fileID: 84730500}
     linesRoot: {fileID: 1852356584}
