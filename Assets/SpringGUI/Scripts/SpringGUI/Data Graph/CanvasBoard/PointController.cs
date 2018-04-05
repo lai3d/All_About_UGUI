@@ -40,6 +40,8 @@ namespace SpringGUI {
             //if (!pointSelectable.selected) {
             //    return;
             //}
+            if (canvasBoard.canvasBoardBasis.drawingState != DrawingState.Edit)
+                return;
             if (EventSystem.current.currentSelectedGameObject != this.gameObject)
                 return;
             // Delete
@@ -75,7 +77,9 @@ namespace SpringGUI {
 
                     pointData.point.vec = canvasBoard.transform.InverseTransformPoint ((start3 + end3) / 2);
 
+                    canvasBoard.CalculatePoints ();
                     canvasBoard.CalculateLines ();
+                    canvasBoard.CalculateRooms ();
                 }
             }
 
@@ -108,11 +112,10 @@ namespace SpringGUI {
         }
 
         public void OnDrag (PointerEventData eventData) {
-            Debug.Log ("OnDrag");
-            //if (pointSelectable.selected || pointSelectable.preSelected) {
-
-                // Move with mouse drag
-                float translationV = eventData.delta.y;
+            //Debug.Log ("OnDrag");
+            if (canvasBoard.canvasBoardBasis.drawingState == DrawingState.Edit) { 
+            // Move with mouse drag
+            float translationV = eventData.delta.y;
                 float translationH = eventData.delta.x;
 
                 if (Mathf.Abs (translationH) > float.Epsilon || Mathf.Abs (translationV) > float.Epsilon) {
@@ -129,8 +132,9 @@ namespace SpringGUI {
 
                     canvasBoard.CalculatePoints ();
                     canvasBoard.CalculateLines ();
+                    canvasBoard.CalculateRooms ();
                 }
-            //}
+            }
         }
 
         public void OnPointerClick (PointerEventData eventData) {

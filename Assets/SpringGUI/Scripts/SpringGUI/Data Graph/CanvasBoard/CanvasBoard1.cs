@@ -41,8 +41,8 @@ namespace SpringGUI {
             //}
 
             if (VBasis.isTracingMouse) {
-                var lastList = VBasis.listPoint[VBasis.listPoint.Count - 1];
-                vh.AddUIVertexQuad (GetQuad (lastList[lastList.Count - 1].vec, new Point { vec = VBasis.mouseLocalPoint }.vec, VBasis.LineColor, VBasis.LineWidth));
+                //var lastList = VBasis.listPoint[VBasis.listPoint.Count - 1];
+                vh.AddUIVertexQuad (GetQuad (VBasis.mouseTracingStartPoint.vec, new Point { vec = VBasis.mouseLocalPoint }.vec, VBasis.LineColor, VBasis.LineWidth));
             }
 
             return vh;

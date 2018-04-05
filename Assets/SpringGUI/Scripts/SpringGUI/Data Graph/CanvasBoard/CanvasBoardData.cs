@@ -43,6 +43,8 @@ namespace SpringGUI {
         public List<Line> listLines = new List<Line> ();
         [HideInInspector]
         public List<List<Point>> listPoint = new List<List<Point>> ();
+
+        public Point mouseTracingStartPoint;
         public Vector2 mouseLocalPoint;
 
         public DrawingState drawingState = DrawingState.Walls;
@@ -95,12 +97,15 @@ namespace SpringGUI {
             }
             else {
                 if (bNewList) {
-                    listPoint.Add (new List<Point> () { new Point { vec = point } });
+                    var pt = new Point { vec = point };
+                    mouseTracingStartPoint = pt;
+                    listPoint.Add (new List<Point> () { pt });
                 }
                 else {
                     var list = listPoint[listPoint.Count - 1];
                     Point start = list[list.Count - 1];
                     Point end = new Point { vec = point };
+                    mouseTracingStartPoint = end;
 
                     list.Add (end);
 
@@ -151,6 +156,7 @@ namespace SpringGUI {
             var list = listPoint[listPoint.Count - 1];
             Point start = list[list.Count - 1];
             Point end = point;
+            mouseTracingStartPoint = point;
 
             //list.Add (end);
 

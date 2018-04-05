@@ -28,6 +28,16 @@ namespace SpringGUI {
 
         // Update is called once per frame
         void Update () {
+            if (canvasBoard.canvasBoardBasis.drawingState != DrawingState.Edit)
+                return;
+            if (EventSystem.current.currentSelectedGameObject != this.gameObject)
+                return;
+            // Delete
+            if (Input.GetKeyUp (KeyCode.Delete)) {
+                canvasBoard.DeleteRoom (roomData.room);
+
+                Destroy (gameObject);
+            }
         }
         
     }

@@ -144,6 +144,14 @@ namespace SpringGUI {
             }
         }
 
+        public void CalculateRooms() {
+
+        }
+
+        public void DeleteRoom (Room room) {
+
+        }
+
         public void DeleteLine (Line line) {
             bool dirty = false;
 
