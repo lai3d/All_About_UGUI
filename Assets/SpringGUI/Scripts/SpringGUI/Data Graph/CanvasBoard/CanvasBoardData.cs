@@ -47,7 +47,16 @@ namespace SpringGUI {
         public Point mouseTracingStartPoint;
         public Vector2 mouseLocalPoint;
 
-        public DrawingState drawingState = DrawingState.Walls;
+        private DrawingState _drawingState = DrawingState.Walls;
+
+        public DrawingState drawingState {
+            get {
+                return _drawingState;
+            }
+            set {
+                _drawingState = value;
+            }
+        }
 
         public bool isTracingMouse = false;
         public bool isEditingLines = false;
