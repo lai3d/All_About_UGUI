@@ -280,6 +280,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\AlphaRaycaster\Editor\AlphaCheckEditor.cs" />
     <Compile Include="Assets\SpringGUI\Editor\SpringGUI\ColorPicker\ColoredTapeEditor.cs" />
     <Compile Include="Assets\SpringGUI\Editor\SpringGUI\ColorPicker\MainColorTapeEditor.cs" />
     <Compile Include="Assets\SpringGUI\Editor\SpringGUI\ColorPicker\MultiColoredTapeEditor.cs" />

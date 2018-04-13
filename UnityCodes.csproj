@@ -225,6 +225,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\AlphaRaycaster\Scripts\AlphaCheck.cs" />
+    <Compile Include="Assets\AlphaRaycaster\Scripts\AlphaRaycaster.cs" />
     <Compile Include="Assets\Scripts\ActiveStateToggler.cs" />
     <Compile Include="Assets\Scripts\ApplicationManager.cs" />
     <Compile Include="Assets\Scripts\ChangeColor.cs" />
