@@ -7,3 +7,6 @@ Temp/
 Library/
 /obj
 /UnityCodes.userprefs
+/UnityCodes.sln
+/Assembly-CSharp.csproj
+/Assembly-CSharp-Editor.csproj
