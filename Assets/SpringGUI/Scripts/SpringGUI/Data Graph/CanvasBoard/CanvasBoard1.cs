@@ -21,29 +21,28 @@ namespace SpringGUI {
         public VertexHelper DrawPointLines (VertexHelper vh, Rect vRect, CanvasBoardData VBasis) {
             Debug.Log ("DrawPointLines");
 
-            listLines.Clear ();
-            foreach (var list in VBasis.listPoint) {
-                foreach(var point in list) {
-                    point.lines.Clear ();
-                }
-            }
+            //listLines.Clear ();
+            //foreach (var list in VBasis.listPoint) {
+            //    foreach(var point in list) {
+            //        point.lines.Clear ();
+            //    }
+            //}
 
-            foreach (var list in VBasis.listPoint) {
-                for (int i = 1; i < list.Count; ++i) {
-                    listLines.Add (new Line (list[i - 1], list[i]));
-                }
-            }
+            //foreach (var list in VBasis.listPoint) {
+            //    for (int i = 1; i < list.Count; ++i) {
+            //        listLines.Add (new Line (list[i - 1], list[i]));
+            //    }
+            //}
 
-            Debug.Log ("ListLines.Count " + listLines.Count);
+            //Debug.Log ("ListLines.Count " + listLines.Count);
 
-            foreach (var line in listLines) {
-                vh.AddUIVertexQuad (GetQuad (line.start.vec, line.end.vec, VBasis.LineColor, VBasis.LineWidth));
-            }
+            //foreach (var line in listLines) {
+            //    vh.AddUIVertexQuad (GetQuad (line.start.vec, line.end.vec, VBasis.LineColor, VBasis.LineWidth));
+            //}
 
             if (VBasis.isTracingMouse) {
-                var lastList = VBasis.listPoint[VBasis.listPoint.Count - 1];
-                //listLines.Add (new Line (lastList[lastList.Count - 1], new Point { vec = VBasis.mouseLocalPoint }));
-                vh.AddUIVertexQuad (GetQuad (lastList[lastList.Count - 1].vec, new Point { vec = VBasis.mouseLocalPoint }.vec, VBasis.LineColor, VBasis.LineWidth));
+                //var lastList = VBasis.listPoint[VBasis.listPoint.Count - 1];
+                vh.AddUIVertexQuad (GetQuad (VBasis.mouseTracingStartPoint.vec, new Point { vec = VBasis.mouseLocalPoint }.vec, VBasis.LineColor, VBasis.LineWidth));
             }
 
             return vh;

@@ -225,6 +225,19 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\AlphaRaycaster\Scripts\AlphaCheck.cs" />
+    <Compile Include="Assets\AlphaRaycaster\Scripts\AlphaRaycaster.cs" />
+    <Compile Include="Assets\Scripts\ActiveStateToggler.cs" />
+    <Compile Include="Assets\Scripts\ApplicationManager.cs" />
+    <Compile Include="Assets\Scripts\ChangeColor.cs" />
+    <Compile Include="Assets\Scripts\DragMe.cs" />
+    <Compile Include="Assets\Scripts\DragPanel.cs" />
+    <Compile Include="Assets\Scripts\DropMe.cs" />
+    <Compile Include="Assets\Scripts\PanelManager.cs" />
+    <Compile Include="Assets\Scripts\ResizePanel.cs" />
+    <Compile Include="Assets\Scripts\ScrollDetailTexture.cs" />
+    <Compile Include="Assets\Scripts\ShowSliderValue.cs" />
+    <Compile Include="Assets\Scripts\TiltWindow.cs" />
     <Compile Include="Assets\SpringGUI\Demo\01_FunctionalGraph\FunctionalGraphExample.cs" />
     <Compile Include="Assets\SpringGUI\Demo\02_PieGraph\PieGraphExample.cs" />
     <Compile Include="Assets\SpringGUI\Demo\03_DoubleClickButton_LongClick\DoubleLongClickButton.cs" />
@@ -237,12 +250,6 @@
     <Compile Include="Assets\SpringGUI\Demo\10_BarChartGraph\BarChartExample.cs" />
     <Compile Include="Assets\SpringGUI\Demo\11_Ruler\RulerExample.cs" />
     <Compile Include="Assets\SpringGUI\Demo\12_CanvasBoard\CanvasBoardExample.cs" />
-    <Compile Include="Assets\SpringGUI\Demo\12_CanvasBoard\LineController.cs" />
-    <Compile Include="Assets\SpringGUI\Demo\12_CanvasBoard\LineData.cs" />
-    <Compile Include="Assets\SpringGUI\Demo\12_CanvasBoard\LineSelectable.cs" />
-    <Compile Include="Assets\SpringGUI\Demo\12_CanvasBoard\PointController.cs" />
-    <Compile Include="Assets\SpringGUI\Demo\12_CanvasBoard\PointData.cs" />
-    <Compile Include="Assets\SpringGUI\Demo\12_CanvasBoard\PointSelectable.cs" />
     <Compile Include="Assets\SpringGUI\Demo\13_Shapes\UICircle2.cs" />
     <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Buttons\DoubleClickButton.cs" />
     <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Buttons\LongClickButton.cs" />
@@ -269,6 +276,14 @@
     <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Data Graph\CanvasBoard\CanvasBoard1.cs" />
     <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Data Graph\CanvasBoard\CanvasBoardData.cs" />
     <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Data Graph\CanvasBoard\Line.cs" />
+    <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Data Graph\CanvasBoard\LineController.cs" />
+    <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Data Graph\CanvasBoard\LineData.cs" />
+    <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Data Graph\CanvasBoard\LineSelectable.cs" />
+    <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Data Graph\CanvasBoard\PointController.cs" />
+    <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Data Graph\CanvasBoard\PointData.cs" />
+    <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Data Graph\CanvasBoard\PointSelectable.cs" />
+    <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Data Graph\CanvasBoard\RoomController.cs" />
+    <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Data Graph\CanvasBoard\RoomData.cs" />
     <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Data Graph\FunctionalGraph\FunctionalGraph.cs" />
     <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Data Graph\FunctionalGraph\FunctionalGraphBase.cs" />
     <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Data Graph\LineChart\LineChart.cs" />
@@ -467,11 +482,14 @@
     <Compile Include="Assets\unity-ui-extensions\Scripts\VR Extensions\VRInputModule.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Fonts\Jupiter\LICENSE.txt" />
+    <None Include="Assets\Materials\UI-Default-No-Alpha.shader" />
     <None Include="Assets\Plugins\RuntimeInspector\ExternalResources\ColorWheel\LICENSE.txt" />
     <None Include="Assets\Plugins\RuntimeInspector\ExternalResources\ColorWheel\Visuals\ColorWheelShader.shader" />
     <None Include="Assets\Plugins\RuntimeInspector\README.txt" />
     <None Include="Assets\Plugins\RuntimeInspector\Shaders\ColorPickerAlphaShader.shader" />
     <None Include="Assets\SpringGUI\Scripts\SpringGUI\Icons\SpringGUI Icon Doc.txt" />
+    <None Include="Assets\Textures and Sprites\SF UI\Background\LICENSE.txt" />
     <None Include="Assets\unity-ui-extensions\Shaders\SoftMaskShader.shader" />
     <None Include="Assets\unity-ui-extensions\Shaders\UI Particle Add.shader" />
     <None Include="Assets\unity-ui-extensions\Shaders\UI Particle AddMultiply.shader" />

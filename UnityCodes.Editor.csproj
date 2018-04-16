@@ -280,6 +280,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\AlphaRaycaster\Editor\AlphaCheckEditor.cs" />
     <Compile Include="Assets\SpringGUI\Editor\SpringGUI\ColorPicker\ColoredTapeEditor.cs" />
     <Compile Include="Assets\SpringGUI\Editor\SpringGUI\ColorPicker\MainColorTapeEditor.cs" />
     <Compile Include="Assets\SpringGUI\Editor\SpringGUI\ColorPicker\MultiColoredTapeEditor.cs" />
@@ -301,11 +302,14 @@
     <Compile Include="Assets\unity-ui-extensions\Editor\UIExtensionsMenuOptions.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Fonts\Jupiter\LICENSE.txt" />
+    <None Include="Assets\Materials\UI-Default-No-Alpha.shader" />
     <None Include="Assets\Plugins\RuntimeInspector\ExternalResources\ColorWheel\LICENSE.txt" />
     <None Include="Assets\Plugins\RuntimeInspector\ExternalResources\ColorWheel\Visuals\ColorWheelShader.shader" />
     <None Include="Assets\Plugins\RuntimeInspector\README.txt" />
     <None Include="Assets\Plugins\RuntimeInspector\Shaders\ColorPickerAlphaShader.shader" />
     <None Include="Assets\SpringGUI\Scripts\SpringGUI\Icons\SpringGUI Icon Doc.txt" />
+    <None Include="Assets\Textures and Sprites\SF UI\Background\LICENSE.txt" />
     <None Include="Assets\unity-ui-extensions\Shaders\SoftMaskShader.shader" />
     <None Include="Assets\unity-ui-extensions\Shaders\UI Particle Add.shader" />
     <None Include="Assets\unity-ui-extensions\Shaders\UI Particle AddMultiply.shader" />

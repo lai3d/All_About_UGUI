@@ -43,7 +43,21 @@ namespace SpringGUI {
         public List<Line> listLines = new List<Line> ();
         [HideInInspector]
         public List<List<Point>> listPoint = new List<List<Point>> ();
+
+        public Point mouseTracingStartPoint;
         public Vector2 mouseLocalPoint;
+
+        private DrawingState _drawingState = DrawingState.Walls;
+
+        public DrawingState drawingState {
+            get {
+                return _drawingState;
+            }
+            set {
+                _drawingState = value;
+            }
+        }
+
         public bool isTracingMouse = false;
         public bool isEditingLines = false;
         public bool isDetectNear = false;
@@ -52,37 +66,139 @@ namespace SpringGUI {
 
         public RectTransform lineTemplate;
         public RectTransform pointTemplate;
+        public RectTransform roomTemplate;
 
         public RectTransform linesRoot;
         public RectTransform pointsRoot;
+        public RectTransform roomsRoot;
+
+        private bool FindPointNear (Vector2 point) {
+            foreach (var list in listPoint) {
+                foreach (var p in list) {
+                    if ((point - p.vec).sqrMagnitude <= squareMagnitudeValue) {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        //private bool FindPoint(Vector2 vec, out Point point) {
+        //    foreach (var list in listPoint) {
+        //        foreach (var p in list) {
+        //            if ((point - p.vec).sqrMagnitude <= squareMagnitudeValue) {
+        //                return true;
+        //            }
+        //        }
+        //    }
+        //}
 
         public void AddPoint (Vector2 point, bool bNewList) {
             if (isDetectNear) {
-                if(bNewList) {
+                if (bNewList) {
                     listPoint.Add (new List<Point> () { new Point { vec = point } });
-                } else {
-                    bool bFound = false;
-                    foreach(var list in listPoint) {
-                        foreach(var p in list) {
-                            if((point - p.vec).sqrMagnitude <= squareMagnitudeValue) {
-                                bFound = true;
-                                break;
-                            }
-                        }
-                    }
-
-                    if(!bFound) {
+                }
+                else {
+                    if (!FindPointNear (point)) {
                         listPoint[listPoint.Count - 1].Add (new Point { vec = point });
                     }
                 }
             }
             else {
                 if (bNewList) {
-                    listPoint.Add (new List<Point> () { new Point { vec = point } });
+                    var pt = new Point { vec = point };
+                    mouseTracingStartPoint = pt;
+                    listPoint.Add (new List<Point> () { pt });
                 }
                 else {
-                    listPoint[listPoint.Count - 1].Add (new Point { vec = point });
+                    var list = listPoint[listPoint.Count - 1];
+                    Point start = list[list.Count - 1];
+                    Point end = new Point { vec = point };
+                    mouseTracingStartPoint = end;
+
+                    list.Add (end);
+
+                    bool bFirstLine = list.Count == 2;
+
+                    // Generate line and points
+                    var line = new Line (start, end);
+                    listLines.Add (line);
+                    // line
+                    {
+                        GameObject go = GameObject.Instantiate (lineTemplate.gameObject, linesRoot.transform);
+                        go.GetComponent<LineData> ().line = line;
+                        var rt = go.GetComponent<RectTransform> ();
+                        rt.anchoredPosition = (start.vec + end.vec) / 2;
+                        float width = Mathf.Abs ((end.vec - start.vec).magnitude);
+                        rt.sizeDelta = new Vector2 (width, 20);
+                        Vector2 vec = (end.vec - start.vec).normalized;
+
+                        // calculate rotation
+                        float targetRotation = Mathf.Atan2 (vec.y, vec.x) * Mathf.Rad2Deg;
+                        rt.localRotation = Quaternion.Euler (0, 0, targetRotation);
+
+                        go.SetActive (true);
+                    }
+
+                    // points
+                    {
+                        if(bFirstLine) {
+                            GameObject go1 = GameObject.Instantiate (pointTemplate.gameObject, pointsRoot.transform);
+                            go1.GetComponent<PointData> ().point = start;
+                            var rt1 = go1.GetComponent<RectTransform> ();
+                            rt1.anchoredPosition = start.vec;
+
+                            go1.SetActive (true);
+                        }
+                        GameObject go = GameObject.Instantiate (pointTemplate.gameObject, pointsRoot.transform);
+                        go.GetComponent<PointData> ().point = end;
+                        var rt = go.GetComponent<RectTransform> ();
+                        rt.anchoredPosition = end.vec;
+
+                        go.SetActive (true);
+                    }
                 }
+            }
+        }
+
+        public void AddExistPoint(Point point) {
+            var list = listPoint[listPoint.Count - 1];
+            Point start = list[list.Count - 1];
+            Point end = point;
+            mouseTracingStartPoint = point;
+
+            //list.Add (end);
+
+            //bool bFirstLine = list.Count == 2;
+
+            // Generate line and points
+            var line = new Line (start, end);
+            listLines.Add (line);
+            // line
+            {
+                GameObject go = GameObject.Instantiate (lineTemplate.gameObject, linesRoot.transform);
+                go.GetComponent<LineData> ().line = line;
+                var rt = go.GetComponent<RectTransform> ();
+                rt.anchoredPosition = (start.vec + end.vec) / 2;
+                float width = Mathf.Abs ((end.vec - start.vec).magnitude);
+                rt.sizeDelta = new Vector2 (width, 20);
+                Vector2 vec = (end.vec - start.vec).normalized;
+
+                // calculate rotation
+                float targetRotation = Mathf.Atan2 (vec.y, vec.x) * Mathf.Rad2Deg;
+                rt.localRotation = Quaternion.Euler (0, 0, targetRotation);
+
+                go.SetActive (true);
+            }
+            // Room
+            var room = new Room ();
+            {
+                GameObject go = GameObject.Instantiate (roomTemplate.gameObject, roomsRoot.transform);
+                go.GetComponent<RoomData> ().room = room;
+                var rt = go.GetComponent<RectTransform> ();
+                rt.anchoredPosition = (list[0].vec + list[2].vec) / 2;
+
+                go.SetActive (true);
             }
         }
 

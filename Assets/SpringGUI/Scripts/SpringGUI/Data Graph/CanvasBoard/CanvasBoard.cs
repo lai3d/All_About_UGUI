@@ -40,9 +40,9 @@ namespace SpringGUI {
             OnEnable ();
         }
 
-        public void Inject (IList<Vector2> vertexs) {
-            canvasBoardBasis.AddLine (vertexs);
-        }
+        //public void Inject (IList<Vector2> vertexs) {
+        //    canvasBoardBasis.AddLine (vertexs);
+        //}
 
         public void Inject (Vector2 point, bool bMousePosition = false) {
             if (!bMousePosition) {
@@ -51,6 +51,10 @@ namespace SpringGUI {
             else {
                 canvasBoardBasis.mouseLocalPoint = point;
             }
+        }
+
+        public void InjectExist (Point point) {
+            canvasBoardBasis.AddExistPoint (point);
         }
 
         public void ClearBoard () {
@@ -138,6 +142,14 @@ namespace SpringGUI {
                     rt.anchoredPosition = point.vec;
                 }
             }
+        }
+
+        public void CalculateRooms() {
+
+        }
+
+        public void DeleteRoom (Room room) {
+
         }
 
         public void DeleteLine (Line line) {
@@ -233,27 +245,54 @@ namespace SpringGUI {
 
             switch (eventData.button) {
             case PointerEventData.InputButton.Left: {
-                    Vector2 pos = eventData.position;
-                    //Debug.Log (pos.ToString ());
-                    Vector2 localPoint;
-                    RectTransformUtility.ScreenPointToLocalPointInRectangle (rectTransform, pos, eventData.pressEventCamera, out localPoint);
-                    //Debug.Log ("localPoint: " + localPoint.ToString ());
+                    switch (canvasBoardBasis.drawingState) {
+                    case DrawingState.Edit:
+                        break;
+                    case DrawingState.Walls: {
+                            Vector2 pos = eventData.position;
+                            //Debug.Log (pos.ToString ());
+                            Vector2 localPoint;
+                            RectTransformUtility.ScreenPointToLocalPointInRectangle (rectTransform, pos, eventData.pressEventCamera, out localPoint);
+                            //Debug.Log ("localPoint: " + localPoint.ToString ());
 
-                    Inject (localPoint, false);
+                            Inject (localPoint, false);
 
-                    canvasBoardBasis.isTracingMouse = true;
-                    SetAllDirty ();
-                    //UpdateGeometry();
+                            canvasBoardBasis.isTracingMouse = true;
+                            SetAllDirty ();
+                        }
+                        break;
+                    case DrawingState.Rooms:
+                        break;
+                    }
                 }
                 break;
             case PointerEventData.InputButton.Right: {
-                    canvasBoardBasis.isTracingMouse = false;
-                    SetAllDirty ();
-                    //UpdateGeometry();
+                    switch(canvasBoardBasis.drawingState) {
+                    case DrawingState.Edit:
+                        break;
+                    case DrawingState.Walls: {
+                            if (canvasBoardBasis.isTracingMouse) {
+                                canvasBoardBasis.isTracingMouse = false;
+
+                                SetAllDirty ();
+                            } else {
+                                canvasBoardBasis.drawingState = DrawingState.Edit;
+                            }
+                        }
+                        break;
+                    case DrawingState.Rooms:
+                        break;
+                    }
                 }
                 break;
             }
         }
+    }
+
+    public enum DrawingState {
+        Edit,
+        Walls,
+        Rooms
     }
 
     public interface ICanvasBoard {
