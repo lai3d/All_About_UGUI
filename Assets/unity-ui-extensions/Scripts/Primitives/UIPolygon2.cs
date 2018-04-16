@@ -19,6 +19,7 @@ namespace UnityEngine.UI.Extensions
         private float size = 0;
 
 		public List<Vector2> points = new List<Vector2>();
+        private List<Vector2> pointsReal = new List<Vector2> ();
 
         public void DrawPolygon(int _sides)
         {
@@ -56,6 +57,7 @@ namespace UnityEngine.UI.Extensions
         {
             vh.Clear();
 
+#if Polygon_1
             Vector2 prevX = Vector2.zero;
             Vector2 prevY = Vector2.zero;
             Vector2 uv0 = new Vector2(0, 0);
@@ -102,6 +104,29 @@ namespace UnityEngine.UI.Extensions
                 prevY = pos2;
                 vh.AddUIVertexQuad(SetVbo(new[] { pos0, pos1, pos2, pos3 }, new[] { uv0, uv1, uv2, uv3 }));
             }
+#else
+            pointsReal.Clear ();
+
+            foreach(var point in points) {
+                pointsReal.Add (new Vector2 (point.x * rectTransform.rect.width, point.y * rectTransform.rect.height));    
+            }
+            var triangulator = new Triangulator (pointsReal.ToArray ());
+
+            List<UIVertex> verts = new List<UIVertex> ();
+            List<int> indices = new List<int> ();
+
+            foreach(var point in pointsReal) {
+                var vert = UIVertex.simpleVert;
+                vert.color = color;
+                vert.position = point;
+
+                verts.Add (vert);
+            }
+
+            indices.AddRange(triangulator.Triangulate());
+            
+            vh.AddUIVertexStream (verts, indices);
+#endif
         }
     }
 }

@@ -315,6 +315,8 @@
     <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\UITree\UITreeNode.cs" />
     <Compile Include="Assets\SpringShader\Demo\01_LowPoly\LowPoly.cs" />
     <Compile Include="Assets\unity-ui-extensions\Examples\2D_Primitives\Draggable.cs" />
+    <Compile Include="Assets\unity-ui-extensions\Examples\2D_Primitives\MyMesh.cs" />
+    <Compile Include="Assets\unity-ui-extensions\Examples\2D_Primitives\Triangulator.cs" />
     <Compile Include="Assets\unity-ui-extensions\Examples\ComboBox\ComboBoxChanged.cs" />
     <Compile Include="Assets\unity-ui-extensions\Examples\Cooldown\CooldownEffect_Image.cs" />
     <Compile Include="Assets\unity-ui-extensions\Examples\Cooldown\CooldownEffect_SAUIM.cs" />
@@ -440,6 +442,7 @@
     <Compile Include="Assets\unity-ui-extensions\Scripts\Primitives\UILineRenderer.cs" />
     <Compile Include="Assets\unity-ui-extensions\Scripts\Primitives\UILineTextureRenderer.cs" />
     <Compile Include="Assets\unity-ui-extensions\Scripts\Primitives\UIPolygon.cs" />
+    <Compile Include="Assets\unity-ui-extensions\Scripts\Primitives\UIPolygon2.cs" />
     <Compile Include="Assets\unity-ui-extensions\Scripts\Primitives\UIPrimitiveBase.cs" />
     <Compile Include="Assets\unity-ui-extensions\Scripts\TabNavigationHelper.cs" />
     <Compile Include="Assets\unity-ui-extensions\Scripts\ToolTips\BoundTooltip\BoundTooltipItem.cs" />
