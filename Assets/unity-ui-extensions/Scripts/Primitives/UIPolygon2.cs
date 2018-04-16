@@ -56,55 +56,7 @@ namespace UnityEngine.UI.Extensions
         protected override void OnPopulateMesh(VertexHelper vh)
         {
             vh.Clear();
-
-#if Polygon_1
-            Vector2 prevX = Vector2.zero;
-            Vector2 prevY = Vector2.zero;
-            Vector2 uv0 = new Vector2(0, 0);
-            Vector2 uv1 = new Vector2(0, 1);
-            Vector2 uv2 = new Vector2(1, 1);
-            Vector2 uv3 = new Vector2(1, 0);
-            Vector2 pos0;
-            Vector2 pos1;
-            Vector2 pos2;
-            Vector2 pos3;
-            float degrees = 360f / sides;
-            int vertices = sides + 1;
-            if (VerticesDistances.Length != vertices)
-            {
-                VerticesDistances = new float[vertices];
-                for (int i = 0; i < vertices - 1; i++) VerticesDistances[i] = 1;
-            }
-            // last vertex is also the first!
-            VerticesDistances[vertices - 1] = VerticesDistances[0];
-            for (int i = 0; i < vertices; i++)
-            {
-                float outer = -rectTransform.pivot.x * size * VerticesDistances[i];
-                float inner = -rectTransform.pivot.x * size * VerticesDistances[i] + thickness;
-                float rad = Mathf.Deg2Rad * (i * degrees + rotation);
-                float c = Mathf.Cos(rad);
-                float s = Mathf.Sin(rad);
-                uv0 = new Vector2(0, 1);
-                uv1 = new Vector2(1, 1);
-                uv2 = new Vector2(1, 0);
-                uv3 = new Vector2(0, 0);
-                pos0 = prevX;
-                pos1 = new Vector2(outer * c, outer * s);
-                if (fill)
-                {
-                    pos2 = Vector2.zero;
-                    pos3 = Vector2.zero;
-                }
-                else
-                {
-                    pos2 = new Vector2(inner * c, inner * s);
-                    pos3 = prevY;
-                }
-                prevX = pos1;
-                prevY = pos2;
-                vh.AddUIVertexQuad(SetVbo(new[] { pos0, pos1, pos2, pos3 }, new[] { uv0, uv1, uv2, uv3 }));
-            }
-#else
+            
             pointsReal.Clear ();
 
             foreach(var point in points) {
@@ -126,7 +78,34 @@ namespace UnityEngine.UI.Extensions
             indices.AddRange(triangulator.Triangulate());
             
             vh.AddUIVertexStream (verts, indices);
-#endif
         }
+
+        #region ICanvasRaycastFilter Interface
+        public override bool IsRaycastLocationValid (Vector2 screenPoint, Camera eventCamera) {
+            Vector2 local;
+            RectTransformUtility.ScreenPointToLocalPointInRectangle (rectTransform, screenPoint, eventCamera, out local);
+
+            if (ContainsPoint (pointsReal.ToArray (), local))
+                return true;
+            return false;
+        }
+
+        /// <summary>
+        /// http://wiki.unity3d.com/index.php/PolyContainsPoint
+        /// </summary>
+        /// <param name="polyPoints"></param>
+        /// <param name="p"></param>
+        /// <returns></returns>
+        private bool ContainsPoint (Vector2[] polyPoints, Vector2 p) { 
+           var j = polyPoints.Length - 1;
+           var inside = false; 
+           for (int i = 0; i < polyPoints.Length; j = i++) { 
+              if (((polyPoints[i].y <= p.y && p.y<polyPoints[j].y) || (polyPoints[j].y <= p.y && p.y<polyPoints[i].y)) && 
+                 (p.x<(polyPoints[j].x - polyPoints[i].x) * (p.y - polyPoints[i].y) / (polyPoints[j].y - polyPoints[i].y) + polyPoints[i].x)) 
+                 inside = !inside; 
+           } 
+           return inside; 
+        }
+        #endregion
     }
 }
