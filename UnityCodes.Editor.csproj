@@ -268,6 +268,9 @@
     <Reference Include="UnityEditor.Purchasing">
       <HintPath>C:/Users/laiya/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.purchasing@1.0.1/Editor/UnityEditor.Purchasing.dll</HintPath>
     </Reference>
+    <Reference Include="CursorControl">
+      <HintPath>Assets/CursorControl/Scripts/CursorControl.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="UnityCodes.Plugins.csproj">
@@ -302,6 +305,8 @@
     <Compile Include="Assets\unity-ui-extensions\Editor\UIExtensionsMenuOptions.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\CursorControl\LICENSE.txt" />
+    <None Include="Assets\CursorControl\README.txt" />
     <None Include="Assets\Fonts\Jupiter\LICENSE.txt" />
     <None Include="Assets\Materials\UI-Default-No-Alpha.shader" />
     <None Include="Assets\Plugins\RuntimeInspector\ExternalResources\ColorWheel\LICENSE.txt" />
