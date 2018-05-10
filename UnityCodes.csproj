@@ -211,14 +211,14 @@
     <Reference Include="UnityEngine.SpatialTracking">
       <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
+    <Reference Include="CursorControl">
+      <HintPath>Assets/CursorControl/Scripts/CursorControl.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.Analytics">
       <HintPath>C:/Users/laiya/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.analytics@1.0.1/UnityEngine.Analytics.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Purchasing">
       <HintPath>C:/Users/laiya/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.purchasing@1.0.1/UnityEngine.Purchasing.dll</HintPath>
-    </Reference>
-    <Reference Include="CursorControl">
-      <HintPath>Assets/CursorControl/Scripts/CursorControl.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -281,6 +281,7 @@
     <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Data Graph\CanvasBoard\CanvasBoard.cs" />
     <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Data Graph\CanvasBoard\CanvasBoard1.cs" />
     <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Data Graph\CanvasBoard\CanvasBoardData.cs" />
+    <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Data Graph\CanvasBoard\ExtensionMethods.cs" />
     <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Data Graph\CanvasBoard\Line.cs" />
     <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Data Graph\CanvasBoard\LineController.cs" />
     <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Data Graph\CanvasBoard\LineData.cs" />
@@ -290,6 +291,8 @@
     <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Data Graph\CanvasBoard\PointSelectable.cs" />
     <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Data Graph\CanvasBoard\RoomController.cs" />
     <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Data Graph\CanvasBoard\RoomData.cs" />
+    <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Data Graph\CanvasBoard\RoomShape.cs" />
+    <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Data Graph\CanvasBoard\RoomTestController.cs" />
     <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Data Graph\FunctionalGraph\FunctionalGraph.cs" />
     <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Data Graph\FunctionalGraph\FunctionalGraphBase.cs" />
     <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Data Graph\LineChart\LineChart.cs" />
@@ -320,6 +323,8 @@
     <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\UITree\UITreeData.cs" />
     <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\UITree\UITreeNode.cs" />
     <Compile Include="Assets\SpringShader\Demo\01_LowPoly\LowPoly.cs" />
+    <Compile Include="Assets\unity-ui-extensions\Examples\2D_Primitives\clipper.cs" />
+    <Compile Include="Assets\unity-ui-extensions\Examples\2D_Primitives\ClipperTest.cs" />
     <Compile Include="Assets\unity-ui-extensions\Examples\2D_Primitives\Draggable.cs" />
     <Compile Include="Assets\unity-ui-extensions\Examples\2D_Primitives\MyMesh.cs" />
     <Compile Include="Assets\unity-ui-extensions\Examples\2D_Primitives\Triangulator.cs" />
