@@ -33,6 +33,7 @@ public class ClipperTest : MonoBehaviour {
         subj[0].Add (new IntPoint (180, 200));
         subj[0].Add (new IntPoint (260, 200));
         subj[0].Add (new IntPoint (260, 150));
+        subj[0].Add (new IntPoint(220, 100));
         subj[0].Add (new IntPoint (180, 150));
 
         //subj.Add (new Path (3));
