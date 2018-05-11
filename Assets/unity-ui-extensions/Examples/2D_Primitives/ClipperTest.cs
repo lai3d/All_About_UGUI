@@ -30,11 +30,11 @@ public class ClipperTest : MonoBehaviour {
         //Paths subj = new Paths (2);
         //Paths subj = new Paths (1);
         subj.Add (new Path (4));
-        subj[0].Add (new IntPoint (180, 200));
-        subj[0].Add (new IntPoint (260, 200));
-        subj[0].Add (new IntPoint (260, 150));
-        subj[0].Add (new IntPoint(220, 100));
-        subj[0].Add (new IntPoint (180, 150));
+        subj[0].Add (new IntPoint (-180, 200));
+        subj[0].Add (new IntPoint (-260, 200));
+        subj[0].Add (new IntPoint (-260, 150));
+        subj[0].Add (new IntPoint(-220, 100));
+        subj[0].Add (new IntPoint (-180, 150));
 
         //subj.Add (new Path (3));
         //subj[1].Add (new IntPoint (215, 160));
@@ -43,10 +43,11 @@ public class ClipperTest : MonoBehaviour {
 
         //Paths clip = new Paths (1);
         clip.Add (new Path (4));
-        clip[0].Add (new IntPoint (190, 210));
-        clip[0].Add (new IntPoint (240, 210));
-        clip[0].Add (new IntPoint (240, 130));
-        clip[0].Add (new IntPoint (190, 130));
+        clip[0].Add (new IntPoint (-190, 210));
+        clip[0].Add (new IntPoint (-215, 190));
+        clip[0].Add (new IntPoint (-240, 210));
+        clip[0].Add (new IntPoint (-240, 130));
+        clip[0].Add (new IntPoint (-190, 130));
 
         //DrawPolygons (subj, Color.FromArgb (0x16, 0, 0, 0xFF), Color.FromArgb (0x60, 0, 0, 0xFF));
         DrawPolygons (subj, "0x0000FF9A".hexToColor(), "0x6000009A".hexToColor());
