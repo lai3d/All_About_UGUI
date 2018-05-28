@@ -494,6 +494,26 @@
     <Compile Include="Assets\unity-ui-extensions\Scripts\Utilities\UISelectableExtension.cs" />
     <Compile Include="Assets\unity-ui-extensions\Scripts\VR Extensions\VRCursor.cs" />
     <Compile Include="Assets\unity-ui-extensions\Scripts\VR Extensions\VRInputModule.cs" />
+    <Compile Include="Assets\UnityUtils\_External\FpsCounter\HUDFPS.cs" />
+    <Compile Include="Assets\UnityUtils\_External\UnityToolbag\CacheBehaviour\CacheBehaviour.cs" />
+    <Compile Include="Assets\UnityUtils\Controls\FollowObject\FollowObject.cs" />
+    <Compile Include="Assets\UnityUtils\Controls\GameEditor\FlyCameraController\FlyCameraController.cs" />
+    <Compile Include="Assets\UnityUtils\Controls\GameEditor\ObjectsPlacer\ObjectsPlacer.cs" />
+    <Compile Include="Assets\UnityUtils\Controls\PathFinding\2dTileBasedPathFinding\Grid.cs" />
+    <Compile Include="Assets\UnityUtils\Controls\PathFinding\2dTileBasedPathFinding\Node.cs" />
+    <Compile Include="Assets\UnityUtils\Controls\PathFinding\2dTileBasedPathFinding\PathFinding.cs" />
+    <Compile Include="Assets\UnityUtils\Controls\PathFinding\2dTileBasedPathFinding\Point.cs" />
+    <Compile Include="Assets\UnityUtils\Controls\SimpleFpsControls\FPSMouseLooking.cs" />
+    <Compile Include="Assets\UnityUtils\Controls\SimpleFpsControls\FPSWalker.cs" />
+    <Compile Include="Assets\UnityUtils\Graphics\Billboard\Billboard.cs" />
+    <Compile Include="Assets\UnityUtils\Graphics\RandomRotator\RandomRotator.cs" />
+    <Compile Include="Assets\UnityUtils\Graphics\TextureFan\TextureFan.cs" />
+    <Compile Include="Assets\UnityUtils\Misc\ExMath\ExMath.cs" />
+    <Compile Include="Assets\UnityUtils\Oldies\Controls\GameEditor\ObjectsPickAndPlacer\ObjectsPickAndPlacer.cs" />
+    <Compile Include="Assets\UnityUtils\TileMap3D\Tile.cs" />
+    <Compile Include="Assets\UnityUtils\TileMap3D\TileMap.cs" />
+    <Compile Include="Assets\UnityUtils\TileMap3D\TilemapEditor.cs" />
+    <Compile Include="Assets\UnityUtils\TileMap3D\TileType.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\CursorControl\LICENSE.txt" />

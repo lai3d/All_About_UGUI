@@ -253,6 +253,9 @@
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/15.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
+    <Reference Include="CursorControl">
+      <HintPath>Assets/CursorControl/Scripts/CursorControl.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor.Advertisements">
       <HintPath>C:/Users/laiya/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.ads@1.0.7/Editor/UnityEditor.Advertisements.dll</HintPath>
     </Reference>
@@ -267,9 +270,6 @@
     </Reference>
     <Reference Include="UnityEditor.Purchasing">
       <HintPath>C:/Users/laiya/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.purchasing@1.0.1/Editor/UnityEditor.Purchasing.dll</HintPath>
-    </Reference>
-    <Reference Include="CursorControl">
-      <HintPath>Assets/CursorControl/Scripts/CursorControl.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -303,6 +303,8 @@
     <Compile Include="Assets\unity-ui-extensions\Editor\TextPicEditor.cs" />
     <Compile Include="Assets\unity-ui-extensions\Editor\uGUITools.cs" />
     <Compile Include="Assets\unity-ui-extensions\Editor\UIExtensionsMenuOptions.cs" />
+    <Compile Include="Assets\UnityUtils\_External\UnityToolbag\SnapToSurface\Editor\SnapToSurface.cs" />
+    <Compile Include="Assets\UnityUtils\_External\UnityToolbag\UnityConstants\Editor\UnityConstantsGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\CursorControl\LICENSE.txt" />
