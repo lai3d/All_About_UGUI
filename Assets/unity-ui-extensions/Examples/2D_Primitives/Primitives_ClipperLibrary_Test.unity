@@ -409,6 +409,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   polygonTemplate: {fileID: 1706816676}
   pointTemplate: {fileID: 505092392}
+  clipType: 0
 --- !u!1 &1273891630
 GameObject:
   m_ObjectHideFlags: 0
