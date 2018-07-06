@@ -12,9 +12,10 @@ public class ColorListExample : MonoBehaviour {
 	void Start () {
         for(int i = 0; i < HueColor.Count; ++i) {
             UICornerCut ucc = Instantiate (template, template.transform.parent);
-            HueColor.HueColorNames enumColor = (HueColor.HueColorNames)i;
+            HueColor.Names enumColor = (HueColor.Names)i;
 
-            ucc.color = HueColor.HueColorValue (enumColor);
+            //ucc.color = HueColor.HueColorValue (enumColor);
+            ucc.color = enumColor.Color ();
             ucc.GetComponentInChildren<Text> ().text = enumColor.ToString ();
 
             ucc.gameObject.SetActive (true);
@@ -22,7 +23,7 @@ public class ColorListExample : MonoBehaviour {
 
         for (int i = 0; i < HueColor.Count; ++i) {
             UICornerCut ucc = Instantiate (template, template.transform.parent);
-            HueColor.HueColorNames enumColor = (HueColor.HueColorNames)i;
+            HueColor.Names enumColor = (HueColor.Names)i;
 
             ucc.color = HueColor.HueColorValue (enumColor, 128);
             ucc.GetComponentInChildren<Text> ().text = enumColor.ToString () + " a=128";
