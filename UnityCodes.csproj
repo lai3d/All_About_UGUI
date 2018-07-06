@@ -237,6 +237,7 @@
     <Compile Include="Assets\Scripts\DragMe.cs" />
     <Compile Include="Assets\Scripts\DragPanel.cs" />
     <Compile Include="Assets\Scripts\DropMe.cs" />
+    <Compile Include="Assets\Scripts\LayerMaskExtensions.cs" />
     <Compile Include="Assets\Scripts\MouseCursorController.cs" />
     <Compile Include="Assets\Scripts\MouseCursorUguiController.cs" />
     <Compile Include="Assets\Scripts\PanelManager.cs" />
@@ -257,6 +258,7 @@
     <Compile Include="Assets\SpringGUI\Demo\11_Ruler\RulerExample.cs" />
     <Compile Include="Assets\SpringGUI\Demo\12_CanvasBoard\CanvasBoardExample.cs" />
     <Compile Include="Assets\SpringGUI\Demo\13_Shapes\UICircle2.cs" />
+    <Compile Include="Assets\SpringGUI\Demo\14_ColorList\ColorListExample.cs" />
     <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Buttons\DoubleClickButton.cs" />
     <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Buttons\LongClickButton.cs" />
     <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Calendar\Calendar.cs" />
@@ -282,6 +284,7 @@
     <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Data Graph\CanvasBoard\CanvasBoard1.cs" />
     <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Data Graph\CanvasBoard\CanvasBoardData.cs" />
     <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Data Graph\CanvasBoard\ExtensionMethods.cs" />
+    <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Data Graph\CanvasBoard\HueColor.cs" />
     <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Data Graph\CanvasBoard\Line.cs" />
     <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Data Graph\CanvasBoard\LineController.cs" />
     <Compile Include="Assets\SpringGUI\Scripts\SpringGUI\Data Graph\CanvasBoard\LineData.cs" />

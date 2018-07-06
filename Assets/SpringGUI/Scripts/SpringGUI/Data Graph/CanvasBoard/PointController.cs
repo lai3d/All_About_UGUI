@@ -119,7 +119,7 @@ namespace SpringGUI {
                 float translationH = eventData.delta.x;
 
                 if (Mathf.Abs (translationH) > float.Epsilon || Mathf.Abs (translationV) > float.Epsilon) {
-                    Debug.Log ("Translate H: " + translationH + " V: " + translationV);
+                    //Debug.Log ("Translate H: " + translationH + " V: " + translationV);
                     transform.Translate (translationH, translationV, 0, transform.parent);
 
                     var rt = GetComponent<RectTransform> ();

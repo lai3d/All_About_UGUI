@@ -123,6 +123,10 @@ namespace SpringGUI {
                     rt.anchoredPosition = (line.start.vec + line.end.vec) / 2;
                     float width = Mathf.Abs ((line.end.vec - line.start.vec).magnitude);
                     rt.sizeDelta = new Vector2 (width, 20);
+                    var boxCollider = child.GetComponent<BoxCollider2D> ();
+                    if (boxCollider != null) {
+                        boxCollider.size = rt.sizeDelta;
+                    }
 
                     Vector2 vec = (line.end.vec - line.start.vec).normalized;
 
